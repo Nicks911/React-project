@@ -3,6 +3,7 @@ import Navbar from "./Components/FrontEnd/Guest/Navbar"
 // import Navbar from "./Components/FrontEnd/User/Navbar"
 import Footer from "./Components/FrontEnd/Shared/Footer"
 import Home from "./Components/FrontEnd/Shared/Home"
+import Login from "./Components/FrontEnd/Shared/Login"
 
 const App = () => {
   return (
@@ -18,8 +19,12 @@ const App = () => {
       </section> */}
 
       <section>
-        <AccountManage />
+        <Login />
       </section>
+{/* 
+      <section>
+        <AccountManage />
+      </section> */}
     </div>
   )
 }
