@@ -162,23 +162,23 @@ const CouponManage = () => {
                             </svg>
                           </div>
                           <div className="ml-4">
-                            <div className="text-sm font-bold text-gray-900">SUMMER2024</div>
+                            <div className="text-sm font-bold text-gray-900">HAIRCUT30</div>
                             <div className="text-xs text-gray-500">Created: Jan 15, 2024</div>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="text-sm text-gray-900">Summer Sale Discount</div>
-                        <div className="text-xs text-gray-500">For all books</div>
+                        <div className="text-sm text-gray-900">Diskon Potong Rambut</div>
+                        <div className="text-xs text-gray-500">All hair cut services</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-semibold text-gray-900">25%</div>
+                        <div className="text-sm font-semibold text-gray-900">30%</div>
                         <div className="text-xs text-gray-500">Percentage</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">145 / 500</div>
+                        <div className="text-sm text-gray-900">67 / 200</div>
                         <div className="w-full bg-gray-200 rounded-full h-1.5 mt-1">
-                          <div className="bg-red-400 h-1.5 rounded-full" style={{width: '29%'}}></div>
+                          <div className="bg-red-400 h-1.5 rounded-full" style={{width: '33.5%'}}></div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -213,23 +213,23 @@ const CouponManage = () => {
                             </svg>
                           </div>
                           <div className="ml-4">
-                            <div className="text-sm font-bold text-gray-900">NEWUSER50</div>
+                            <div className="text-sm font-bold text-gray-900">NEWCLIENT</div>
                             <div className="text-xs text-gray-500">Created: Feb 10, 2024</div>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="text-sm text-gray-900">New User Discount</div>
-                        <div className="text-xs text-gray-500">First purchase only</div>
+                        <div className="text-sm text-gray-900">Pelanggan Baru Gratis Cuci Rambut</div>
+                        <div className="text-xs text-gray-500">First visit only</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-semibold text-gray-900">Rp 50,000</div>
+                        <div className="text-sm font-semibold text-gray-900">Rp 25,000</div>
                         <div className="text-xs text-gray-500">Fixed Amount</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">78 / 200</div>
+                        <div className="text-sm text-gray-900">42 / 100</div>
                         <div className="w-full bg-gray-200 rounded-full h-1.5 mt-1">
-                          <div className="bg-purple-400 h-1.5 rounded-full" style={{width: '39%'}}></div>
+                          <div className="bg-purple-400 h-1.5 rounded-full" style={{width: '42%'}}></div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -264,23 +264,23 @@ const CouponManage = () => {
                             </svg>
                           </div>
                           <div className="ml-4">
-                            <div className="text-sm font-bold text-gray-900">FREESHIP</div>
+                            <div className="text-sm font-bold text-gray-900">COLORING20</div>
                             <div className="text-xs text-gray-500">Created: Mar 5, 2024</div>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="text-sm text-gray-900">Free Shipping Promo</div>
-                        <div className="text-xs text-gray-500">Min. purchase Rp 200k</div>
+                        <div className="text-sm text-gray-900">Promo Hair Coloring</div>
+                        <div className="text-xs text-gray-500">All coloring services</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-semibold text-gray-900">100%</div>
-                        <div className="text-xs text-gray-500">Free Shipping</div>
+                        <div className="text-sm font-semibold text-gray-900">20%</div>
+                        <div className="text-xs text-gray-500">Percentage</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">234 / 1000</div>
+                        <div className="text-sm text-gray-900">156 / 300</div>
                         <div className="w-full bg-gray-200 rounded-full h-1.5 mt-1">
-                          <div className="bg-blue-400 h-1.5 rounded-full" style={{width: '23.4%'}}></div>
+                          <div className="bg-blue-400 h-1.5 rounded-full" style={{width: '52%'}}></div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -315,23 +315,23 @@ const CouponManage = () => {
                             </svg>
                           </div>
                           <div className="ml-4">
-                            <div className="text-sm font-bold text-gray-900">FLASH15</div>
+                            <div className="text-sm font-bold text-gray-900">SMOOTHING15</div>
                             <div className="text-xs text-gray-500">Created: Apr 1, 2024</div>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="text-sm text-gray-900">Flash Sale</div>
-                        <div className="text-xs text-gray-500">Limited time offer</div>
+                        <div className="text-sm text-gray-900">Promo Hair Smoothing</div>
+                        <div className="text-xs text-gray-500">Limited time only</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm font-semibold text-gray-900">15%</div>
                         <div className="text-xs text-gray-500">Percentage</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">98 / 100</div>
+                        <div className="text-sm text-gray-900">48 / 50</div>
                         <div className="w-full bg-gray-200 rounded-full h-1.5 mt-1">
-                          <div className="bg-yellow-400 h-1.5 rounded-full" style={{width: '98%'}}></div>
+                          <div className="bg-yellow-400 h-1.5 rounded-full" style={{width: '96%'}}></div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -360,44 +360,43 @@ const CouponManage = () => {
                     <tr className="hover:bg-gray-50 transition-colors duration-150">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <div className="flex-shrink-0 bg-gray-100 rounded-md p-2">
-                            <svg className="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <div className="flex-shrink-0 bg-green-100 rounded-md p-2">
+                            <svg className="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.99 1.99 0 013 12V7a4 4 0 014-4z"></path>
                             </svg>
                           </div>
                           <div className="ml-4">
-                            <div className="text-sm font-bold text-gray-900">WINTER20</div>
-                            <div className="text-xs text-gray-500">Created: Dec 1, 2023</div>
+                            <div className="text-sm font-bold text-gray-900">SPADAY50K</div>
+                            <div className="text-xs text-gray-500">Created: May 10, 2024</div>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="text-sm text-gray-900">Winter Sale 2023</div>
-                        <div className="text-xs text-gray-500">Seasonal discount</div>
+                        <div className="text-sm text-gray-900">Paket Spa & Perawatan</div>
+                        <div className="text-xs text-gray-500">Min. purchase Rp 300k</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-semibold text-gray-900">20%</div>
-                        <div className="text-xs text-gray-500">Percentage</div>
+                        <div className="text-sm font-semibold text-gray-900">Rp 50,000</div>
+                        <div className="text-xs text-gray-500">Fixed Amount</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">300 / 300</div>
+                        <div className="text-sm text-gray-900">89 / 150</div>
                         <div className="w-full bg-gray-200 rounded-full h-1.5 mt-1">
-                          <div className="bg-gray-400 h-1.5 rounded-full" style={{width: '100%'}}></div>
+                          <div className="bg-green-400 h-1.5 rounded-full" style={{width: '59.3%'}}></div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        Jan 31, 2024
+                        Dec 20, 2024
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-                          Expired
+                        <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                          Active
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <button className="text-blue-600 hover:text-blue-900 mr-3 transition-colors duration-150">
                           <svg className="h-5 w-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                           </svg>
                         </button>
                         <button className="text-red-600 hover:text-red-900 transition-colors duration-150">
