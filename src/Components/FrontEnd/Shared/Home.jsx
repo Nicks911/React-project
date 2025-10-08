@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const Home = () => {
   return (
     <div className="bg-white min-h-screen">
@@ -48,9 +50,11 @@ const Home = () => {
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
           </p>
-          <button className="bg-red-300 hover:bg-red-400 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
-            Book Now
-          </button>
+          <Link to="/register">
+            <button className="bg-red-400 hover:bg-red-500 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer">
+              Book Now
+            </button>
+          </Link>
         </div>
       </section>
     </div>

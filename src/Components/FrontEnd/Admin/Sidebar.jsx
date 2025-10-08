@@ -1,7 +1,8 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const Sidebar = ({ sidebarOpen, toggleSidebar }) => {
   const location = useLocation()
+  const navigate = useNavigate()
 
   const menuItems = [
     {
@@ -55,6 +56,14 @@ const Sidebar = ({ sidebarOpen, toggleSidebar }) => {
     return location.pathname === path
   }
 
+  const handleLogout = () => {
+    // Clear any stored authentication data here (localStorage, sessionStorage, etc.)
+    // localStorage.removeItem('authToken');
+    
+    // Redirect to homepage
+    navigate('/')
+  }
+
   return (
     <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out`}>
       {/* Navigation Menu */}
@@ -99,7 +108,10 @@ const Sidebar = ({ sidebarOpen, toggleSidebar }) => {
 
       {/* Logout Button */}
       <div className="absolute bottom-0 w-full p-4">
-        <button className="w-full flex items-center justify-center px-4 py-3 text-sm font-medium text-white bg-red-400 rounded-lg hover:bg-red-500 transition-all duration-200 transform hover:scale-105">
+        <button 
+          onClick={handleLogout}
+          className="w-full flex items-center justify-center px-4 py-3 text-sm font-medium text-white bg-red-400 rounded-lg hover:bg-red-500 transition-all duration-200 transform hover:scale-105 cursor-pointer"
+        >
           <svg className="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
           </svg>

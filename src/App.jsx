@@ -9,6 +9,10 @@ import GuestLayout from "./Components/FrontEnd/Layouts/GuestLayout"
 import CustomerLayout from "./Components/FrontEnd/Layouts/CustomerLayout"
 import Home from "./Components/FrontEnd/Shared/Home"
 import Login from "./Components/FrontEnd/Shared/Login"
+import Register from "./Components/FrontEnd/Shared/Register"
+import Blog from "./Components/FrontEnd/Guest/Blog"
+import Gallery from "./Components/FrontEnd/Guest/Gallery"
+import PriceList from "./Components/FrontEnd/Guest/PriceList"
 
 const App = () => {
   return (
@@ -24,7 +28,11 @@ const App = () => {
         
         {/* Guest Routes - Before Login (with Guest Navbar) */}
         <Route path="/" element={<GuestLayout><Home /></GuestLayout>} />
-        <Route path="/login" element={<GuestLayout><Login /></GuestLayout>} />
+        <Route path="/blog" element={<GuestLayout><Blog /></GuestLayout>} />
+        <Route path="/gallery" element={<GuestLayout><Gallery /></GuestLayout>} />
+        <Route path="/pricelist" element={<GuestLayout><PriceList /></GuestLayout>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         
         {/* Customer Routes - After Login (with Customer Navbar) */}
         <Route path="/home" element={<CustomerLayout><Home /></CustomerLayout>} />

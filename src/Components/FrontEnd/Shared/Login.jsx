@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -31,15 +33,32 @@ const Login = () => {
     e.preventDefault();
     
     if (validateForm()) {
-      // Handle login logic here
-      console.log('Login submitted:', { email, password });
-      // Add your authentication logic here
+      // Check if admin credentials
+      if (email === 'admin123@gmail.com' && password === 'admin123') {
+        // Redirect to admin dashboard
+        console.log('Admin login successful');
+        navigate('/admin/dashboard');
+      } else {
+        // Handle regular user login
+        console.log('Login submitted:', { email, password });
+        // Add your regular user authentication logic here
+        // For now, you can redirect to customer home or show error
+        alert('Invalid credentials. Please try again.');
+      }
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-red-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
+        {/* Back Button */}
+        <Link to="/" className="inline-flex items-center text-gray-600 hover:text-red-400 transition-colors duration-200">
+          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          <span className="font-medium">Back to Home</span>
+        </Link>
+
         {/* Login Card */}
         <div className="bg-white rounded-2xl shadow-2xl p-8 sm:p-10">
           {/* Logo and Header */}
@@ -177,9 +196,9 @@ const Login = () => {
             <div className="text-center">
               <p className="text-sm text-gray-600">
                 Don't have an account?{' '}
-                <a href="#" className="font-medium text-red-400 hover:text-red-500 transition duration-150 ease-in-out">
+                <Link to="/register" className="font-medium text-red-400 hover:text-red-500 transition duration-150 ease-in-out">
                   Sign up now
-                </a>
+                </Link>
               </p>
             </div>
           </form>

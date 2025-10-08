@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const Footer = () => {
   return (
     <footer className="bg-black text-white py-16 px-8">
@@ -22,19 +24,19 @@ const Footer = () => {
               <h3 className="text-lg font-semibold text-white mb-6">NAVIGATION</h3>
               <ul className="space-y-3">
                 <li>
-                  <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">
+                  <Link to="/blog" className="text-gray-300 hover:text-white transition-colors duration-300">
                     BLOG
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">
+                  <Link to="/gallery" className="text-gray-300 hover:text-white transition-colors duration-300">
                     GALLERY
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">
+                  <Link to="/pricelist" className="text-gray-300 hover:text-white transition-colors duration-300">
                     PRICE LIST
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">
@@ -49,9 +51,44 @@ const Footer = () => {
           <div className="col-span-1">
             <h3 className="text-lg font-semibold text-white mb-6">STUDIO</h3>
             <div className="space-y-2 text-gray-300">
-              <p>Placeholder Studios</p>
-              <p>1500 S Placeholder Drive</p>
-              <p>City, State, 12345</p>
+              <p>Flowers Beauty Salon</p>
+              <p>Jl. Gubeng Kertajaya V F Blok F No.32</p>
+              <p>RT.007/RW.03, Airlangga, Kec. Gubeng, Surabaya, Jawa Timur 60286</p>
+            </div>
+
+            {/* Opening Hours */}
+            <div className="mt-8">
+              <h3 className="text-lg font-semibold text-white mb-6">OPENING HOURS</h3>
+              <div className="space-y-2 text-gray-300 text-sm">
+                <div className="flex justify-between">
+                  <span>Monday</span>
+                  <span className="text-red-400">Closed</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Tuesday</span>
+                  <span>8.00 am–5.00 pm</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Wednesday</span>
+                  <span>8.00 am–5.00 pm</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Thursday</span>
+                  <span>8.00 am–5.00 pm</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Friday</span>
+                  <span>8.00 am–5.00 pm</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Saturday</span>
+                  <span>8.00 am–5.00 pm</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Sunday</span>
+                  <span>8.00 am–5.00 pm</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -59,29 +96,7 @@ const Footer = () => {
           <div className="col-span-1">
             <div className="mb-8">
               <h3 className="text-lg font-semibold text-white mb-6">GET IN TOUCH</h3>
-              <p className="text-gray-300">info@placeholder.com</p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-6">SOCIALS</h3>
-              <div className="space-y-2">
-                <p>
-                  <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">
-                    Instagram
-                  </a>
-                </p>
-                <p>
-                  <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">
-                    Twitter
-                  </a>
-                </p>
-              </div>
-            </div>
-            
-            {/* Design Credit */}
-            <div className="text-right mt-12 text-sm text-gray-400">
-              <p>Design by <span className="text-white">Rexs</span></p>
-              <p>Development <span className="text-white">Sean,Sebas, Nicho, Tegar</span></p>
+              <p className="text-gray-300">(031) 5031437</p>
             </div>
           </div>
         </div>
