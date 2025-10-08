@@ -18,13 +18,13 @@ const App = () => {
         <Footer />
       </section> */}
 
-      <section>
+      {/* <section>
         <Login />
-      </section>
-{/* 
+      </section> */}
+
       <section>
         <AccountManage />
-      </section> */}
+      </section>
     </div>
   )
 }
