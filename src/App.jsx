@@ -5,9 +5,8 @@ import BookManage from "./Components/FrontEnd/Admin/BookManage"
 import CouponManage from "./Components/FrontEnd/Admin/CouponManage"
 import ServiceManage from "./Components/FrontEnd/Admin/ServiceManage"
 import Transaction from "./Components/FrontEnd/Admin/Transaction"
-import Navbar from "./Components/FrontEnd/Guest/Navbar"
-// import Navbar from "./Components/FrontEnd/User/Navbar"
-import Footer from "./Components/FrontEnd/Shared/Footer"
+import GuestLayout from "./Components/FrontEnd/Layouts/GuestLayout"
+import CustomerLayout from "./Components/FrontEnd/Layouts/CustomerLayout"
 import Home from "./Components/FrontEnd/Shared/Home"
 import Login from "./Components/FrontEnd/Shared/Login"
 
@@ -23,12 +22,12 @@ const App = () => {
         <Route path="/admin/services" element={<ServiceManage />} />
         <Route path="/admin/transactions" element={<Transaction />} />
         
-        {/* Redirect root to dashboard by default */}
-        <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
+        {/* Guest Routes - Before Login (with Guest Navbar) */}
+        <Route path="/" element={<GuestLayout><Home /></GuestLayout>} />
+        <Route path="/login" element={<GuestLayout><Login /></GuestLayout>} />
         
-        {/* Future routes can be added here */}
-        {/* <Route path="/home" element={<Home />} /> */}
-        {/* <Route path="/login" element={<Login />} /> */}
+        {/* Customer Routes - After Login (with Customer Navbar) */}
+        <Route path="/home" element={<CustomerLayout><Home /></CustomerLayout>} />
       </Routes>
     </Router>
   )
