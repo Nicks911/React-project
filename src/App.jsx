@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import Dashboard from "./Components/FrontEnd/Admin/Dashboard"
 import AccountManage from "./Components/FrontEnd/Admin/AccountManage"
 import BookManage from "./Components/FrontEnd/Admin/BookManage"
 import CouponManage from "./Components/FrontEnd/Admin/CouponManage"
@@ -15,14 +16,15 @@ const App = () => {
     <Router>
       <Routes>
         {/* Admin Routes */}
+        <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/accounts" element={<AccountManage />} />
         <Route path="/admin/books" element={<BookManage />} />
         <Route path="/admin/coupons" element={<CouponManage />} />
         <Route path="/admin/services" element={<ServiceManage />} />
         <Route path="/admin/transactions" element={<Transaction />} />
         
-        {/* Redirect root to accounts by default */}
-        <Route path="/" element={<Navigate to="/admin/accounts" replace />} />
+        {/* Redirect root to dashboard by default */}
+        <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
         
         {/* Future routes can be added here */}
         {/* <Route path="/home" element={<Home />} /> */}
