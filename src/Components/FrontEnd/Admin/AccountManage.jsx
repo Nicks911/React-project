@@ -6,7 +6,7 @@ const AccountManage = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
             
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 mb-8">
               <div className="bg-white overflow-hidden shadow-sm rounded-lg hover:shadow-md transition-shadow duration-200">
                 <div className="p-5">
                   <div className="flex items-center">
@@ -17,7 +17,7 @@ const AccountManage = () => {
                     </div>
                     <div className="ml-5 w-0 flex-1">
                       <dl>
-                        <dt className="text-sm font-medium text-gray-500 truncate">Total Users</dt>
+                        <dt className="text-sm font-medium text-gray-500 truncate">Total Customers</dt>
                         <dd className="text-2xl font-bold text-gray-900">1,247</dd>
                       </dl>
                     </div>
@@ -35,26 +35,8 @@ const AccountManage = () => {
                     </div>
                     <div className="ml-5 w-0 flex-1">
                       <dl>
-                        <dt className="text-sm font-medium text-gray-500 truncate">Active Users</dt>
+                        <dt className="text-sm font-medium text-gray-500 truncate">Active Customers</dt>
                         <dd className="text-2xl font-bold text-gray-900">1,089</dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white overflow-hidden shadow-sm rounded-lg hover:shadow-md transition-shadow duration-200">
-                <div className="p-5">
-                  <div className="flex items-center">
-                    <div className="flex-shrink-0 bg-yellow-100 rounded-md p-3">
-                      <svg className="h-6 w-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                      </svg>
-                    </div>
-                    <div className="ml-5 w-0 flex-1">
-                      <dl>
-                        <dt className="text-sm font-medium text-gray-500 truncate">Pending</dt>
-                        <dd className="text-2xl font-bold text-gray-900">43</dd>
                       </dl>
                     </div>
                   </div>
@@ -100,14 +82,12 @@ const AccountManage = () => {
                 <select className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-300 focus:border-transparent">
                   <option>All Status</option>
                   <option>Active</option>
-                  <option>Pending</option>
                   <option>Inactive</option>
                 </select>
                 <select className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-300 focus:border-transparent">
                   <option>All Roles</option>
                   <option>Admin</option>
-                  <option>User</option>
-                  <option>Staff</option>
+                  <option>Customer</option>
                 </select>
               </div>
             </div>
@@ -115,20 +95,13 @@ const AccountManage = () => {
             {/* Users Table */}
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                <h3 className="text-lg font-semibold text-gray-900">User Accounts</h3>
+                <h3 className="text-lg font-semibold text-gray-900">Customer Accounts</h3>
                 <div className="flex gap-3">
-                  {/* Special Admin Button */}
-                  <button className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors duration-200 flex items-center gap-2 shadow-md hover:shadow-lg transform hover:scale-105">
-                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                    </svg>
-                    Add Admin
-                  </button>
                   <button className="px-4 py-2 bg-red-300 text-white rounded-lg hover:bg-red-400 transition-colors duration-200 flex items-center gap-2">
                     <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
                     </svg>
-                    Add New User
+                    Add New Admin
                   </button>
                 </div>
               </div>
@@ -138,7 +111,7 @@ const AccountManage = () => {
                   <thead className="bg-gray-50">
                     <tr>
                       <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        User
+                        Customer
                       </th>
                       <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Contact
@@ -219,7 +192,7 @@ const AccountManage = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                          User
+                          Customer
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -262,12 +235,12 @@ const AccountManage = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                          User
+                          Customer
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                          Pending
+                        <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                          Active
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -305,7 +278,7 @@ const AccountManage = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                          User
+                          Customer
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -347,8 +320,8 @@ const AccountManage = () => {
                         <div className="text-sm text-gray-500">+62 857-9999-8888</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800">
-                          Staff
+                        <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                          Customer
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
