@@ -204,7 +204,7 @@ const AccountManage = () => {
                   <option>All Roles</option>
                   <option>Admin</option>
                   <option>User</option>
-                  <option>Guest</option>
+                  <option>Staff</option>
                 </select>
               </div>
             </div>
@@ -444,8 +444,8 @@ const AccountManage = () => {
                         <div className="text-sm text-gray-500">+62 857-9999-8888</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-                          Guest
+                        <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800">
+                          Staff
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
