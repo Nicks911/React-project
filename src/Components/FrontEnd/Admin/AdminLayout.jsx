@@ -1,12 +1,14 @@
-import { useState } from 'react'
-import Sidebar from './Sidebar'
+import { useState } from "react";
+import { useAuth } from "../../../context/AuthContext";
+import Sidebar from "./Sidebar";
 
 const AdminLayout = ({ children, title }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const { user } = useAuth();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen)
-  }
+    setSidebarOpen(!sidebarOpen);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
@@ -24,18 +26,32 @@ const AdminLayout = ({ children, title }) => {
             <span className="sr-only">Open sidebar</span>
             {/* Hamburger Icon - Bootstrap Style */}
             <div className="w-6 h-6 flex flex-col justify-center items-center space-y-1">
-              <div className={`w-5 h-0.5 bg-gray-600 transition-all duration-300 ${sidebarOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
-              <div className={`w-5 h-0.5 bg-gray-600 transition-all duration-300 ${sidebarOpen ? 'opacity-0' : ''}`}></div>
-              <div className={`w-5 h-0.5 bg-gray-600 transition-all duration-300 ${sidebarOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
+              <div
+                className={`w-5 h-0.5 bg-gray-600 transition-all duration-300 ${
+                  sidebarOpen ? "rotate-45 translate-y-1.5" : ""
+                }`}
+              ></div>
+              <div
+                className={`w-5 h-0.5 bg-gray-600 transition-all duration-300 ${
+                  sidebarOpen ? "opacity-0" : ""
+                }`}
+              ></div>
+              <div
+                className={`w-5 h-0.5 bg-gray-600 transition-all duration-300 ${
+                  sidebarOpen ? "-rotate-45 -translate-y-1.5" : ""
+                }`}
+              ></div>
             </div>
           </button>
-          
+
           <div className="flex-1 px-4 flex justify-between items-center">
             <div className="flex-1">
               <h2 className="text-2xl font-bold text-gray-900 ms-9">{title}</h2>
             </div>
             <div className="ml-4 flex items-center space-x-3">
-              <span className="text-m text-gray-500">Welcome, Admin</span>
+              <span className="text-m text-gray-500">
+                Welcome, {user?.fullName || "Admin"}
+              </span>
             </div>
           </div>
         </div>
@@ -48,13 +64,10 @@ const AdminLayout = ({ children, title }) => {
 
       {/* Clickable Overlay*/}
       {sidebarOpen && (
-        <div 
-          className="fixed inset-0 z-40" 
-          onClick={toggleSidebar}
-        ></div>
+        <div className="fixed inset-0 z-40" onClick={toggleSidebar}></div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default AdminLayout
+export default AdminLayout;
