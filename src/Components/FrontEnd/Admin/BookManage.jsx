@@ -228,10 +228,16 @@ const BookManage = () => {
       if (!token || !bookingId) return;
 
       if (action === "cancel") {
-        const confirmed = window.confirm(
-          "Are you sure you want to cancel this booking?"
-        );
-        if (!confirmed) {
+        const result = await window.Swal.fire({
+          title: "Cancel booking?",
+          text: "This will mark the booking as cancelled.",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#ef4444",
+          cancelButtonColor: "#6b7280",
+          confirmButtonText: "Yes, cancel it",
+        });
+        if (!result.isConfirmed) {
           return;
         }
       }
@@ -258,14 +264,23 @@ const BookManage = () => {
         }
 
         await fetchBookings();
-        setFeedback(
-          action === "accept"
-            ? "Booking accepted successfully"
-            : "Booking cancelled successfully"
-        );
+        await window.Swal.fire({
+          title: action === "accept" ? "Accepted" : "Cancelled",
+          text:
+            action === "accept"
+              ? "Booking accepted successfully"
+              : "Booking cancelled successfully",
+          icon: "success",
+          timer: 1400,
+          showConfirmButton: false,
+        });
       } catch (actionError) {
         console.error(actionError);
-        setError(actionError?.message || "Failed to process booking");
+        await window.Swal.fire({
+          title: "Action failed",
+          text: actionError?.message || "Failed to process booking",
+          icon: "error",
+        });
       } finally {
         setProcessingId(null);
         setProcessingAction(null);

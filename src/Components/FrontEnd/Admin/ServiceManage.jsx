@@ -367,11 +367,17 @@ const ServiceManage = () => {
   const handleDelete = async (service) => {
     if (!token || !service?.id) return;
 
-    const confirmed = window.confirm(
-      `Are you sure you want to delete the service "${service.name}"?`
-    );
+    const result = await window.Swal.fire({
+      title: "Delete service?",
+      html: `This will permanently delete <b>${service.name}</b>.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#ef4444",
+      cancelButtonColor: "#6b7280",
+      confirmButtonText: "Yes, delete it",
+    });
 
-    if (!confirmed) return;
+    if (!result.isConfirmed) return;
 
     setDeletingId(service.id);
     setError("");
@@ -393,11 +399,21 @@ const ServiceManage = () => {
         throw new Error(data?.message || "Failed to delete service");
       }
 
-      setFeedback("Service deleted successfully");
+      await window.Swal.fire({
+        title: "Deleted",
+        text: "Service deleted successfully",
+        icon: "success",
+        timer: 1400,
+        showConfirmButton: false,
+      });
       await fetchServices();
     } catch (deleteError) {
       console.error(deleteError);
-      setError(deleteError?.message || "Failed to delete service");
+      await window.Swal.fire({
+        title: "Delete failed",
+        text: deleteError?.message || "Failed to delete service",
+        icon: "error",
+      });
     } finally {
       setDeletingId(null);
     }

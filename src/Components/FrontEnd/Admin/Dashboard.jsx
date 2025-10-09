@@ -55,19 +55,21 @@ const Dashboard = () => {
           <div className="bg-gradient-to-br from-blue-500 to-blue-600 overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-200">
             <div className="p-5">
               <div className="flex items-center">
-                <div className="flex-shrink-0 bg-white bg-opacity-30 rounded-md p-3">
+                <div className="flex-shrink-0 bg-gray-500/35 bg-opacity-30 rounded-md p-3">
                   <svg
-                    className="h-8 w-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
+                    className="w-[48px] h-[48px] text-gray-800 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                    ></path>
+                      fill-rule="evenodd"
+                      d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+                      clip-rule="evenodd"
+                    />
                   </svg>
                 </div>
                 <div className="ml-5 w-0 flex-1">
@@ -88,19 +90,17 @@ const Dashboard = () => {
           <div className="bg-gradient-to-br from-green-500 to-green-600 overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-200">
             <div className="p-5">
               <div className="flex items-center">
-                <div className="flex-shrink-0 bg-white bg-opacity-30 rounded-md p-3">
+                <div className="flex-shrink-0 bg-gray-500/35 bg-opacity-30 rounded-md p-3">
                   <svg
-                    className="h-8 w-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
+                    className="w-[48px] h-[48px] text-gray-800 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.99 1.99 0 013 12V7a4 4 0 014-4z"
-                    ></path>
+                    <path d="M18.045 3.007 12.31 3a1.965 1.965 0 0 0-1.4.585l-7.33 7.394a2 2 0 0 0 0 2.805l6.573 6.631a1.957 1.957 0 0 0 1.4.585 1.965 1.965 0 0 0 1.4-.585l7.409-7.477A2 2 0 0 0 21 11.479v-5.5a2.972 2.972 0 0 0-2.955-2.972Zm-2.452 6.438a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
                   </svg>
                 </div>
                 <div className="ml-5 w-0 flex-1">
@@ -121,19 +121,23 @@ const Dashboard = () => {
           <div className="bg-gradient-to-br from-purple-500 to-purple-600 overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-200">
             <div className="p-5">
               <div className="flex items-center">
-                <div className="flex-shrink-0 bg-white bg-opacity-30 rounded-md p-3">
+                <div className="flex-shrink-0 bg-gray-500/35 bg-opacity-30 rounded-md p-3">
                   <svg
-                    className="h-8 w-8 text-white"
+                    className="w-[48px] h-[48px] text-gray-800 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
                     fill="none"
-                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path
+                      stroke="currentColor"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    ></path>
+                      strokeWidth="1.5"
+                      d="M13.6 16.733c.234.269.548.456.895.534a1.4 1.4 0 0 0 1.75-.762c.172-.615-.446-1.287-1.242-1.481-.796-.194-1.41-.861-1.241-1.481a1.4 1.4 0 0 1 1.75-.762c.343.077.654.26.888.524m-1.358 4.017v.617m0-5.939v.725M4 15v4m3-6v6M6 8.5 10.5 5 14 7.5 18 4m0 0h-3.5M18 4v3m2 8a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z"
+                    />
                   </svg>
                 </div>
                 <div className="ml-5 w-0 flex-1">
@@ -154,19 +158,23 @@ const Dashboard = () => {
           <div className="bg-gradient-to-br from-orange-500 to-orange-600 overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-200">
             <div className="p-5">
               <div className="flex items-center">
-                <div className="flex-shrink-0 bg-white bg-opacity-30 rounded-md p-3">
+                <div className="flex-shrink-0 bg-gray-500/35 bg-opacity-30 rounded-md p-3">
                   <svg
-                    className="h-8 w-8 text-white"
+                    className="w-[48px] h-[48px] text-gray-800 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
                     fill="none"
-                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path
+                      stroke="currentColor"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-                    ></path>
+                      strokeWidth="1.5"
+                      d="M4 10h16M8 14h8m-4-7V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"
+                    />
                   </svg>
                 </div>
                 <div className="ml-5 w-0 flex-1">
