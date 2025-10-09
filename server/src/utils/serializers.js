@@ -184,6 +184,16 @@ export const buildBookingPayload = (booking) => {
           reference: raw.payment.reference,
         }
       : null,
+    reminders: raw.reminders
+      ? {
+          threeDay: raw.reminders.threeDay
+            ? {
+                sentAt: raw.reminders.threeDay.sentAt,
+                messageSid: raw.reminders.threeDay.messageSid,
+              }
+            : null,
+        }
+      : null,
     createdAt: raw.createdAt,
     updatedAt: raw.updatedAt,
   };

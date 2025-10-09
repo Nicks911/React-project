@@ -22,6 +22,21 @@ This backend provides MongoDB data models and a minimal Express server to suppor
 
 Server defaults to http://localhost:4000 and exposes `/health`.
 
+## WhatsApp Booking Reminders
+
+Automated WhatsApp reminders are sent 3 days before a confirmed booking.
+
+Configure the following environment variables in your `.env` file to enable the integration:
+
+- `TWILIO_ACCOUNT_SID` – Twilio account SID with WhatsApp access.
+- `TWILIO_AUTH_TOKEN` – Twilio auth token.
+- `TWILIO_WHATSAPP_FROM` – WhatsApp-enabled Twilio number (e.g. `whatsapp:+14155238886`).
+- `WHATSAPP_TEST_MODE` – Set to `true` to log messages locally without calling Twilio.
+- `BOOKING_REMINDER_CRON` – (Optional) Cron expression for the daily reminder job. Defaults to `0 9 * * *` (09:00 daily).
+- `BOOKING_REMINDER_TZ` – (Optional) Timezone identifier for the cron job. Defaults to `Asia/Jakarta`.
+
+After the server boots and connects to MongoDB it schedules the reminder job and immediately scans for bookings occurring exactly three days ahead. Bookings without a WhatsApp-capable number are skipped and logged for follow-up.
+
 ## Models
 
 Implemented with Mongoose:

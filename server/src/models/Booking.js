@@ -31,6 +31,12 @@ const BookingSchema = new mongoose.Schema(
     slot: {
       date: { type: String }, // yyyy-mm-dd for quick queries
     },
+    reminders: {
+      threeDay: {
+        sentAt: { type: Date },
+        messageSid: { type: String },
+      },
+    },
     payment: {
       method: {
         type: String,

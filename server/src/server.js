@@ -10,6 +10,10 @@ import couponsRouter from "./routes/coupons.js";
 import bookingsRouter from "./routes/bookings.js";
 import transactionsRouter from "./routes/transactions.js";
 import servicesRouter from "./routes/services.js";
+import {
+  runBookingReminderScan,
+  startBookingReminderJob,
+} from "./jobs/bookingReminderJob.js";
 
 // Load env
 dotenv.config();
@@ -45,6 +49,13 @@ const start = async () => {
     }
     await connectDB(uri);
     console.log("MongoDB connected");
+
+    startBookingReminderJob();
+    // Fire once on startup so newly deployed instances process pending reminders
+    runBookingReminderScan().catch((error) =>
+      console.error("Initial booking reminder scan failed", error)
+    );
+
     app.listen(PORT, () =>
       console.log(`Server listening on http://localhost:${PORT}`)
     );
