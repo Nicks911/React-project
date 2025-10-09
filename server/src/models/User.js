@@ -35,6 +35,7 @@ const UserSchema = new mongoose.Schema(
     phone: { type: String, required: true },
     passwordHash: { type: String, required: true },
     role: { type: String, enum: ["customer", "admin"], default: "customer" },
+    status: { type: String, enum: ["active", "inactive"], default: "active" },
     avatarUrl: String,
     loyaltyPoints: { type: Number, default: 0 },
     preferences: PreferencesSchema,

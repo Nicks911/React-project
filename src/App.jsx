@@ -16,112 +16,83 @@ import PriceList from "./Components/FrontEnd/Guest/PriceList";
 import AuthProvider from "./context/AuthProvider";
 import ProtectedRoute from "./Components/FrontEnd/Shared/ProtectedRoute";
 
-const App = () => {
-  return (
+const withGuestLayout = (component) => <GuestLayout>{component}</GuestLayout>;
+
+const withCustomerLayout = (component) => (
+  <CustomerLayout>{component}</CustomerLayout>
+);
+
+const App = () => (
+  <AuthProvider>
     <Router>
-      <AuthProvider>
-        <Routes>
-          {/* Admin Routes */}
-          <Route
-            path="/admin/dashboard"
-            element={
-              <ProtectedRoute allowedRoles={["admin"]}>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/accounts"
-            element={
-              <ProtectedRoute allowedRoles={["admin"]}>
-                <AccountManage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/books"
-            element={
-              <ProtectedRoute allowedRoles={["admin"]}>
-                <BookManage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/coupons"
-            element={
-              <ProtectedRoute allowedRoles={["admin"]}>
-                <CouponManage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/services"
-            element={
-              <ProtectedRoute allowedRoles={["admin"]}>
-                <ServiceManage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/transactions"
-            element={
-              <ProtectedRoute allowedRoles={["admin"]}>
-                <Transaction />
-              </ProtectedRoute>
-            }
-          />
+      <Routes>
+        <Route path="/" element={withGuestLayout(<Home />)} />
+        <Route path="/login" element={withGuestLayout(<Login />)} />
+        <Route path="/register" element={withGuestLayout(<Register />)} />
+        <Route path="/price-list" element={withGuestLayout(<PriceList />)} />
+        <Route path="/blog" element={withGuestLayout(<Blog />)} />
+        <Route path="/gallery" element={withGuestLayout(<Gallery />)} />
 
-          {/* Guest Routes - Before Login (with Guest Navbar) */}
-          <Route
-            path="/"
-            element={
-              <GuestLayout>
-                <Home />
-              </GuestLayout>
-            }
-          />
-          <Route
-            path="/blog"
-            element={
-              <GuestLayout>
-                <Blog />
-              </GuestLayout>
-            }
-          />
-          <Route
-            path="/gallery"
-            element={
-              <GuestLayout>
-                <Gallery />
-              </GuestLayout>
-            }
-          />
-          <Route
-            path="/pricelist"
-            element={
-              <GuestLayout>
-                <PriceList />
-              </GuestLayout>
-            }
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+        <Route
+          path="/customer/home"
+          element={
+            <ProtectedRoute allowedRoles={["customer"]}>
+              {withCustomerLayout(<Home />)}
+            </ProtectedRoute>
+          }
+        />
 
-          {/* Customer Routes - After Login (with Customer Navbar) */}
-          <Route
-            path="/home"
-            element={
-              <ProtectedRoute allowedRoles={["customer"]}>
-                <GuestLayout>
-                  <Home />
-                </GuestLayout>
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </AuthProvider>
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/accounts"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AccountManage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/coupons"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <CouponManage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/services"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <ServiceManage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/bookings"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <BookManage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/transactions"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <Transaction />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
     </Router>
-  );
-};
+  </AuthProvider>
+);
 
 export default App;

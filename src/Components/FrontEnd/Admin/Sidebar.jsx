@@ -1,9 +1,8 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 
 const Sidebar = ({ sidebarOpen, toggleSidebar }) => {
   const location = useLocation();
-  const navigate = useNavigate();
 
   const { logout } = useAuth();
 
@@ -32,7 +31,7 @@ const Sidebar = ({ sidebarOpen, toggleSidebar }) => {
     },
     {
       name: "Book Manage",
-      path: "/admin/books",
+      path: "/admin/bookings",
       icon: "svg",
       svg: (
         <path
@@ -109,6 +108,11 @@ const Sidebar = ({ sidebarOpen, toggleSidebar }) => {
             <li key={index}>
               <Link
                 to={item.path}
+                onClick={() => {
+                  if (sidebarOpen) {
+                    toggleSidebar();
+                  }
+                }}
                 className={`group flex items-center px-4 py-4 text-m font-medium rounded-lg transition-all duration-200 ${
                   isActive(item.path)
                     ? "bg-red-50 text-red-600"

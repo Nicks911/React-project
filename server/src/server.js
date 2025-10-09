@@ -5,6 +5,11 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import authRouter from "./routes/auth.js";
+import usersRouter from "./routes/users.js";
+import couponsRouter from "./routes/coupons.js";
+import bookingsRouter from "./routes/bookings.js";
+import transactionsRouter from "./routes/transactions.js";
+import servicesRouter from "./routes/services.js";
 
 // Load env
 dotenv.config();
@@ -20,6 +25,11 @@ app.use(morgan("dev"));
 
 // Routes
 app.use("/api/auth", authRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/coupons", couponsRouter);
+app.use("/api/bookings", bookingsRouter);
+app.use("/api/transactions", transactionsRouter);
+app.use("/api/services", servicesRouter);
 
 // Health route
 app.get("/health", (req, res) => {

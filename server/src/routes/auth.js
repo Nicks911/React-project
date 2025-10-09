@@ -2,20 +2,9 @@ import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import { buildUserPayload } from "../utils/serializers.js";
 
 const router = express.Router();
-
-const buildUserPayload = (user) => ({
-  id: user._id,
-  fullName: user.fullName,
-  email: user.email,
-  phone: user.phone,
-  role: user.role,
-  avatarUrl: user.avatarUrl,
-  loyaltyPoints: user.loyaltyPoints,
-  createdAt: user.createdAt,
-  updatedAt: user.updatedAt,
-});
 
 const signToken = (user, secret) => {
   if (!secret) {
