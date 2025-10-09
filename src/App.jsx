@@ -29,12 +29,12 @@ const App = () => (
         <Route path="/" element={withGuestLayout(<Home />)} />
         <Route path="/login" element={withGuestLayout(<Login />)} />
         <Route path="/register" element={withGuestLayout(<Register />)} />
-        <Route path="/price-list" element={withGuestLayout(<PriceList />)} />
+        <Route path="/pricelist" element={withGuestLayout(<PriceList />)} />
         <Route path="/blog" element={withGuestLayout(<Blog />)} />
         <Route path="/gallery" element={withGuestLayout(<Gallery />)} />
 
         <Route
-          path="/customer/home"
+          path="/customer/dashboard"
           element={
             <ProtectedRoute allowedRoles={["customer"]}>
               {withCustomerLayout(<Home />)}

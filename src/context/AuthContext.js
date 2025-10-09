@@ -2,7 +2,7 @@ import { createContext, useContext } from "react";
 
 export const ROLE_REDIRECTS = {
   admin: "/admin/dashboard",
-  customer: "/home",
+  customer: "/",
 };
 
 export const STORAGE_KEYS = {
