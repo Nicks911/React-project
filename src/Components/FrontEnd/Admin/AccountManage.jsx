@@ -658,7 +658,7 @@ const AccountManage = () => {
 
       {/* Create / Edit Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30 px-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/20 px-4">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl">
             <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
               <h4 className="text-lg font-semibold text-gray-900">
@@ -827,7 +827,7 @@ const AccountManage = () => {
 
       {/* Delete Confirmation */}
       {isDeleteOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30 px-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/20 px-4">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
             <div className="px-6 py-4 border-b border-gray-200">
               <h4 className="text-lg font-semibold text-gray-900">

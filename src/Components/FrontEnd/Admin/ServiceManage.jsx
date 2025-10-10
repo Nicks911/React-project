@@ -784,14 +784,14 @@ const ServiceManage = () => {
         </div>
 
         {showModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-60 px-4">
+          <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/20 px-4">
             <div className="relative bg-white rounded-lg shadow-xl w-full max-w-2xl">
-              <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between bg-gradient-to-r from-red-400 to-red-500 rounded-t-lg">
+              <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between rounded-t-lg">
                 <div>
-                  <h3 className="text-xl font-semibold text-white">
+                  <h3 className="text-xl font-semibold text-black">
                     {modalMode === "create" ? "Create Service" : "Edit Service"}
                   </h3>
-                  <p className="text-sm text-red-100">
+                  <p className="text-sm text-black">
                     {modalMode === "create"
                       ? "Add a new service to your catalogue"
                       : `Editing ${currentService?.name}`}
@@ -800,7 +800,7 @@ const ServiceManage = () => {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="text-white hover:text-gray-200 transition-colors duration-150"
+                  className="text-gray-400 hover:text-black transition-colors duration-150"
                 >
                   <svg
                     className="h-6 w-6"

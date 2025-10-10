@@ -5,7 +5,7 @@ const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
 
   return (
-    <div>
+    <div className="my-3">
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/10 border-b border-white/20 shadow-lg">
         <nav className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">

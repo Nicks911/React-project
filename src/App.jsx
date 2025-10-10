@@ -27,8 +27,8 @@ const App = () => (
     <Router>
       <Routes>
         <Route path="/" element={withGuestLayout(<Home />)} />
-        <Route path="/login" element={withGuestLayout(<Login />)} />
-        <Route path="/register" element={withGuestLayout(<Register />)} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/pricelist" element={withGuestLayout(<PriceList />)} />
         <Route path="/blog" element={withGuestLayout(<Blog />)} />
         <Route path="/gallery" element={withGuestLayout(<Gallery />)} />
