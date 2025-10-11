@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ROLE_REDIRECTS, useAuth } from "../../../context/AuthContext";
+import LoadingScreen from "./LoadingScreen";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
@@ -15,6 +16,7 @@ const Login = () => {
   const [apiError, setApiError] = useState("");
   const [infoMessage, setInfoMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -71,6 +73,11 @@ const Login = () => {
     const authenticate = async () => {
       try {
         setIsSubmitting(true);
+        setShowLoading(true);
+        
+        // Minimum 2 second delay
+        const startTime = Date.now();
+        
         const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
           method: "POST",
           headers: {
@@ -85,6 +92,11 @@ const Login = () => {
           throw new Error(data?.message || "Failed to login");
         }
 
+        // Wait for minimum 2 seconds
+        const elapsedTime = Date.now() - startTime;
+        const remainingTime = Math.max(0, 1000 - elapsedTime);
+        await new Promise(resolve => setTimeout(resolve, remainingTime));
+
         login({ token: data.token, user: data.user });
 
         const normalizedRole = data.user?.role?.toLowerCase?.();
@@ -92,6 +104,7 @@ const Login = () => {
         navigate(targetRoute, { replace: true });
       } catch (error) {
         setApiError(error.message || "Failed to login");
+        setShowLoading(false);
       } finally {
         setIsSubmitting(false);
       }
@@ -99,6 +112,10 @@ const Login = () => {
 
     authenticate();
   };
+
+  if (showLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-red-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

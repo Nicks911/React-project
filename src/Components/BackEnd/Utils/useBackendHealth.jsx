@@ -7,6 +7,9 @@ const useBackendHealth = () => {
   const [isChecking, setIsChecking] = useState(true)
 
   useEffect(() => {
+    const startTime = Date.now()
+    const minimumLoadTime = 500
+
     const checkBackend = async () => {
       try {
         // Try to connect to backend health endpoint
@@ -24,7 +27,14 @@ const useBackendHealth = () => {
         clearTimeout(timeoutId)
 
         if (response.ok) {
-          setIsBackendReady(true)
+          // Calculate remaining time to meet minimum load time
+          const elapsedTime = Date.now() - startTime
+          const remainingTime = Math.max(0, minimumLoadTime - elapsedTime)
+          
+          // Wait for remaining time before hiding loading screen
+          setTimeout(() => {
+            setIsBackendReady(true)
+          }, remainingTime)
         } else {
           // Backend responded but not healthy, retry after delay
           setTimeout(checkBackend, 2000)

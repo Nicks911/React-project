@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import LoadingScreen from "./LoadingScreen";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
@@ -17,6 +18,7 @@ const Register = () => {
   const [errors, setErrors] = useState({});
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
   const [serverError, setServerError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -92,8 +94,12 @@ const Register = () => {
     }
 
     setLoading(true);
+    setShowLoading(true);
 
     try {
+      // Minimum 2 second delay
+      const startTime = Date.now();
+      
       const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: {
@@ -117,8 +123,14 @@ const Register = () => {
             email: data.message || "Email is already registered.",
           }));
         }
+        setShowLoading(false);
         return;
       }
+
+      // Wait for minimum 2 seconds
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, 1000 - elapsedTime);
+      await new Promise(resolve => setTimeout(resolve, remainingTime));
 
       setSuccessMessage(
         data.message || "Account created successfully. Redirecting to login..."
@@ -139,10 +151,15 @@ const Register = () => {
     } catch (error) {
       console.error("Registration request failed", error);
       setServerError("Unable to reach the server. Please try again later.");
+      setShowLoading(false);
     } finally {
       setLoading(false);
     }
   };
+
+  if (showLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-red-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
