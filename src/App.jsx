@@ -10,9 +10,10 @@ import CustomerLayout from "./Components/FrontEnd/Layouts/CustomerLayout";
 import Home from "./Components/FrontEnd/Shared/Home";
 import Login from "./Components/FrontEnd/Shared/Login";
 import Register from "./Components/FrontEnd/Shared/Register";
-import Blog from "./Components/FrontEnd/Guest/Blog";
-import Gallery from "./Components/FrontEnd/Guest/Gallery";
-import PriceList from "./Components/FrontEnd/Guest/PriceList";
+import Blog from "./Components/FrontEnd/Shared/Blog";
+import Gallery from "./Components/FrontEnd/Shared/Gallery";
+import PriceList from "./Components/FrontEnd/Shared/PriceList";
+import ScrollToTop from "./Components/FrontEnd/Shared/ScrollToTop";
 import AuthProvider from "./context/AuthProvider";
 import ProtectedRoute from "./Components/FrontEnd/Shared/ProtectedRoute";
 
@@ -25,6 +26,7 @@ const withCustomerLayout = (component) => (
 const App = () => (
   <AuthProvider>
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={withGuestLayout(<Home />)} />
         <Route path="/login" element={<Login />} />

@@ -6,8 +6,8 @@ const Navbar = () => {
 
   return (
     <div className="my-3">
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/10 border-b border-white/20 shadow-lg">
-        <nav className="container mx-auto px-6 py-4">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
+        <nav className="container mx-auto px-6 py-2">
           <div className="flex justify-between items-center">
             {/* Logo/Brand */}
             <Link to="/" className="flex items-center space-x-3">
@@ -27,6 +27,15 @@ const Navbar = () => {
                 isAuthenticated ? "space-x-4" : "space-x-6"
               } items-center`}
             >
+              <li className="relative group">
+                <Link
+                  to="/"
+                  className="text-gray-800 font-semibold text-lg transition-all duration-300 ease-in-out hover:text-red-400 relative"
+                >
+                  Home
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5  bg-red-300 transition-all duration-300 group-hover:w-full"></span>
+                </Link>
+              </li>
               <li className="relative group">
                 <Link
                   to="/blog"
@@ -56,18 +65,8 @@ const Navbar = () => {
               </li>
               {isAuthenticated ? (
                 <>
-                  <li className="text-red-400 ps-5 font-semibold underline text-lg">
+                  <li className="text-red-400 font-bold text-lg">
                     Hi, {user?.fullName?.split(" ")[0] || "Guest"}
-                  </li>
-                  <li>
-                    <Link
-                      to={ROLE_REDIRECTS[user?.role?.toLowerCase?.()] || "/"}
-                    >
-                      <button className="relative overflow-hidden hover:bg-red-50 text-red-500 border-2 border-red-500 font-bold px-8 py-3 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl hover:shadow-red-200/30 group cursor-pointer">
-                        <span className="relative z-10">Dashboard</span>
-                        <div className="absolute inset-0 bg-red-500 opacity-0 transition-opacity duration-300"></div>
-                      </button>
-                    </Link>
                   </li>
                   <li>
                     <button

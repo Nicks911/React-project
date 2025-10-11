@@ -61,7 +61,7 @@ const Footer = () => {
           <div className="col-span-1">
             <div className="mb-8">
               <h3 className="text-lg font-semibold text-white mb-6">GET IN TOUCH</h3>
-              <p className="text-gray-300">(031) 5031437</p>
+              <p className="text-gray-300">(+62) 898-5452-559</p>
             </div>
           </div>
         </div>
