@@ -1,0 +1,53 @@
+ALGORITMA LoginAuthentication
+    input_username : string
+    input_password : string
+    user : object
+    hashed_password : string
+    is_password_match : boolean
+    jwt_token : string
+    current_time : datetime
+
+DESKRIPSI
+    READ input_username, input_password
+    
+    user ← QUERY("SELECT * FROM users WHERE username = input_username")
+    
+    IF user == NULL THEN
+        RETURN {
+            status: "error",
+            message: "Username tidak ditemukan"
+        }
+    ENDIF
+    
+    hashed_password ← user.password
+    is_password_match ← bcrypt.compare(input_password, hashed_password)
+    
+    IF NOT is_password_match THEN
+        RETURN {
+            status: "error",
+            message: "Password salah"
+        }
+    ENDIF
+    
+    jwt_token ← JWT.generate({
+        user_id: user.id,
+        username: user.username,
+        role: user.role
+    })
+    
+    current_time ← CURRENT_TIMESTAMP()
+    QUERY("UPDATE users SET lastLogin = current_time WHERE id = user.id")
+    
+    user_data ← {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        role: user.role
+    }
+    
+    RETURN {
+        status: "success",
+        token: jwt_token,
+        data: user_data
+    }
+END ALGORITMA

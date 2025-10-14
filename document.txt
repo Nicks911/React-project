@@ -1,0 +1,4 @@
+List Tugas Sprint 1 : 
+ - Rancangan Design Frontend (done)
+ - Rancangan Database (done)
+ - Rancangan Backend (done)
