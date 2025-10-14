@@ -2,3 +2,17 @@ List Tugas Sprint 1 :
  - Rancangan Design Frontend (done)
  - Rancangan Database (done)
  - Rancangan Backend (done)
+
+List Tugas Sprint 2:
+ - Membuat Middleware untuk login admin dan mensinkronisasi middleware dengan frontend (done)
+ - Integrasi antara Backend dengan Frontend (done)
+ - Menyelesaikan UI UX halaman manajemen akun untuk admin (done)
+ - Implementasi CRU (Create Read Update) akun (done)
+ - Menyelesaikan UI UX halaman Dashboard untuk admin (done)
+ - Menyelesaikan UI UX halaman manajemen layanan dan booking untuk admin (done)
+ - Menghubungkan API Payment gateway ke Backend (done)
+ - Menyediakan payment gateway untuk pembayaran booking (done)
+ - Membuat endpoint API untuk menampilkan daftar booking (done)
+ - Implementasi RU( Read Update ) Booking (done)
+ - Membuat endpoint API untuk menampilkan daftar layanan (done)
+ - Implementasi CRU(Create Read Update) Layanan & Coupon (done)
