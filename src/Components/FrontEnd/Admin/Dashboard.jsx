@@ -52,7 +52,7 @@ const Dashboard = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-200">
+          <div className="bg-blue-500 overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-200">
             <div className="p-5">
               <div className="flex items-center">
                 <div className="flex-shrink-0 bg-gray-500/35 bg-opacity-30 rounded-md p-3">
@@ -87,7 +87,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-200">
+          <div className="bg-green-500 overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-200">
             <div className="p-5">
               <div className="flex items-center">
                 <div className="flex-shrink-0 bg-gray-500/35 bg-opacity-30 rounded-md p-3">
@@ -118,7 +118,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-200">
+          <div className="bg-purple-500 overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-200">
             <div className="p-5">
               <div className="flex items-center">
                 <div className="flex-shrink-0 bg-gray-500/35 bg-opacity-30 rounded-md p-3">
@@ -155,7 +155,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-200">
+          <div className="bg-orange-500 overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-200">
             <div className="p-5">
               <div className="flex items-center">
                 <div className="flex-shrink-0 bg-gray-500/35 bg-opacity-30 rounded-md p-3">

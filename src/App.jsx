@@ -13,6 +13,7 @@ import Register from "./Components/FrontEnd/Shared/Register";
 import Blog from "./Components/FrontEnd/Shared/Blog";
 import Gallery from "./Components/FrontEnd/Shared/Gallery";
 import PriceList from "./Components/FrontEnd/Shared/PriceList";
+import Book from "./Components/FrontEnd/User/Book";
 import ScrollToTop from "./Components/FrontEnd/Shared/ScrollToTop";
 import AuthProvider from "./context/AuthProvider";
 import ProtectedRoute from "./Components/FrontEnd/Shared/ProtectedRoute";
@@ -40,6 +41,42 @@ const App = () => (
           element={
             <ProtectedRoute allowedRoles={["customer"]}>
               {withCustomerLayout(<Home />)}
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/customer/blog"
+          element={
+            <ProtectedRoute allowedRoles={["customer"]}>
+              {withCustomerLayout(<Blog />)}
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/customer/gallery"
+          element={
+            <ProtectedRoute allowedRoles={["customer"]}>
+              {withCustomerLayout(<Gallery />)}
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/customer/pricelist"
+          element={
+            <ProtectedRoute allowedRoles={["customer"]}>
+              {withCustomerLayout(<PriceList />)}
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/customer/book"
+          element={
+            <ProtectedRoute allowedRoles={["customer"]}>
+              {withCustomerLayout(<Book />)}
             </ProtectedRoute>
           }
         />
