@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { ROLE_REDIRECTS, useAuth } from "../../../context/AuthContext";
+import {
+  ROLE_REDIRECTS,
+  STORAGE_KEYS,
+  useAuth,
+} from "../../../context/AuthContext";
 import LoadingScreen from "./LoadingScreen";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
@@ -17,6 +21,12 @@ const Login = () => {
   const [infoMessage, setInfoMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+    return Boolean(localStorage.getItem(STORAGE_KEYS.token));
+  });
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -74,10 +84,10 @@ const Login = () => {
       try {
         setIsSubmitting(true);
         setShowLoading(true);
-        
+
         // Minimum 2 second delay
         const startTime = Date.now();
-        
+
         const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
           method: "POST",
           headers: {
@@ -95,9 +105,9 @@ const Login = () => {
         // Wait for minimum 2 seconds
         const elapsedTime = Date.now() - startTime;
         const remainingTime = Math.max(0, 1000 - elapsedTime);
-        await new Promise(resolve => setTimeout(resolve, remainingTime));
+        await new Promise((resolve) => setTimeout(resolve, remainingTime));
 
-        login({ token: data.token, user: data.user });
+        login({ token: data.token, user: data.user, rememberMe });
 
         const normalizedRole = data.user?.role?.toLowerCase?.();
         const targetRoute = ROLE_REDIRECTS[normalizedRole] || "/";
@@ -306,6 +316,8 @@ const Login = () => {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
+                  checked={rememberMe}
+                  onChange={(event) => setRememberMe(event.target.checked)}
                   className="h-4 w-4 text-red-300 focus:ring-red-300 border-gray-300 rounded cursor-pointer"
                 />
                 <label

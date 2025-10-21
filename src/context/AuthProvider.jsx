@@ -7,35 +7,71 @@ export const AuthProvider = ({ children }) => {
   const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem(STORAGE_KEYS.token);
-    const storedUser = localStorage.getItem(STORAGE_KEYS.user);
+    if (typeof window === "undefined") {
+      setInitializing(false);
+      return;
+    }
 
-    if (storedToken && storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser);
-        setToken(storedToken);
-        setUser(parsedUser);
-      } catch (error) {
-        console.warn("Failed to parse stored user, clearing auth", error);
-        localStorage.removeItem(STORAGE_KEYS.token);
-        localStorage.removeItem(STORAGE_KEYS.user);
-        setToken(null);
-        setUser(null);
-      }
+    const loadAuthState = () => {
+      const readFromStorage = (storage) => {
+        if (!storage) {
+          return null;
+        }
+
+        const storedToken = storage.getItem(STORAGE_KEYS.token);
+        const storedUser = storage.getItem(STORAGE_KEYS.user);
+
+        if (!storedToken || !storedUser) {
+          return null;
+        }
+
+        try {
+          const parsedUser = JSON.parse(storedUser);
+          return { storedToken, parsedUser };
+        } catch (error) {
+          console.warn("Failed to parse stored user, clearing auth", error);
+          storage.removeItem(STORAGE_KEYS.token);
+          storage.removeItem(STORAGE_KEYS.user);
+          return null;
+        }
+      };
+
+      return readFromStorage(localStorage) || readFromStorage(sessionStorage);
+    };
+
+    const authState = loadAuthState();
+
+    if (authState) {
+      setToken(authState.storedToken);
+      setUser(authState.parsedUser);
+    } else {
+      setToken(null);
+      setUser(null);
     }
 
     setInitializing(false);
   }, []);
 
-  const login = ({ token: nextToken, user: nextUser }) => {
+  const login = ({ token: nextToken, user: nextUser, rememberMe = false }) => {
     if (!nextToken || !nextUser) {
       throw new Error("login requires token and user payload");
     }
 
     setToken(nextToken);
     setUser(nextUser);
-    localStorage.setItem(STORAGE_KEYS.token, nextToken);
-    localStorage.setItem(STORAGE_KEYS.user, JSON.stringify(nextUser));
+
+    localStorage.removeItem(STORAGE_KEYS.token);
+    localStorage.removeItem(STORAGE_KEYS.user);
+    sessionStorage.removeItem(STORAGE_KEYS.token);
+    sessionStorage.removeItem(STORAGE_KEYS.user);
+
+    if (rememberMe) {
+      localStorage.setItem(STORAGE_KEYS.token, nextToken);
+      localStorage.setItem(STORAGE_KEYS.user, JSON.stringify(nextUser));
+    } else {
+      sessionStorage.setItem(STORAGE_KEYS.token, nextToken);
+      sessionStorage.setItem(STORAGE_KEYS.user, JSON.stringify(nextUser));
+    }
   };
 
   const logout = () => {
@@ -43,6 +79,8 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     localStorage.removeItem(STORAGE_KEYS.token);
     localStorage.removeItem(STORAGE_KEYS.user);
+    sessionStorage.removeItem(STORAGE_KEYS.token);
+    sessionStorage.removeItem(STORAGE_KEYS.user);
   };
 
   const value = useMemo(

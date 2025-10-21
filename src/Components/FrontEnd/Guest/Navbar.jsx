@@ -66,7 +66,15 @@ const Navbar = () => {
               {isAuthenticated ? (
                 <>
                   <li className="text-red-400 font-bold text-lg">
-                    Hi, {user?.fullName?.split(" ")[0] || "Guest"}
+                    <Link
+                      to={
+                        ROLE_REDIRECTS[user?.role?.toLowerCase?.()] ||
+                        "/customer/dashboard"
+                      }
+                      className="hover:text-red-500 transition-colors"
+                    >
+                      Hi, {user?.fullName?.split(" ")[0] || "Guest"}
+                    </Link>
                   </li>
                   <li>
                     <button
