@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoadingScreen from "./LoadingScreen";
+import logo from "../../../assets/SharedAsset/logo.png";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
@@ -191,7 +192,7 @@ const Register = () => {
           <div className="text-center">
             <div className="flex justify-center mb-6">
               <img
-                src="/SharedAsset/logo.png"
+                src={logo}
                 alt="Logo"
                 className="h-20 w-auto"
               />

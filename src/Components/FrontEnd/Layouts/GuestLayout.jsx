@@ -1,4 +1,4 @@
-import GuestNavbar from '../Guest/Navbar'
+import Navbar from '../Shared/Navbar'
 import Footer from '../Shared/Footer'
 import LoadingScreen from '../Shared/LoadingScreen'
 import useBackendHealth from '../../BackEnd/Utils/useBackendHealth'
@@ -12,7 +12,7 @@ const GuestLayout = ({ children }) => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <GuestNavbar />
+      <Navbar />
       <main className="flex-grow">
         {children}
       </main>

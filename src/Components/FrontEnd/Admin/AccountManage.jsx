@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import AdminLayout from "./AdminLayout";
 import { useAuth } from "../../../context/AuthContext";
+import defaultAvatar from "../../../assets/AdminAsset/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector-removebg-preview.png";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
@@ -564,7 +565,7 @@ const AccountManage = () => {
                                   className="h-10 w-10 rounded-full object-cover border-2 border-gray-200"
                                   src={
                                     account.avatarUrl ||
-                                    "/AdminAsset/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector-removebg-preview.png"
+                                    defaultAvatar
                                   }
                                   alt={account.fullName}
                                 />

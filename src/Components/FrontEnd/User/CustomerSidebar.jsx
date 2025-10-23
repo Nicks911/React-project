@@ -1,16 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
-import icon from "../../../assets/AdminAsset/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector-removebg-preview.png";
 
-const Sidebar = ({ sidebarOpen, toggleSidebar }) => {
+const CustomerSidebar = ({ sidebarOpen, toggleSidebar }) => {
   const location = useLocation();
-
   const { logout } = useAuth();
 
   const menuItems = [
     {
       name: "Dashboard",
-      path: "/admin/dashboard",
+      path: "/customer/dashboard",
       icon: "svg",
       svg: (
         <>
@@ -24,27 +22,21 @@ const Sidebar = ({ sidebarOpen, toggleSidebar }) => {
       ),
     },
     {
-      name: "Account Manage",
-      path: "/admin/accounts",
-      icon: "image",
-      imageSrc: icon,
-    },
-    {
-      name: "Book Manage",
-      path: "/admin/bookings",
+      name: "Profile",
+      path: "/customer/profile",
       icon: "svg",
       svg: (
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="2"
-          d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
         ></path>
       ),
     },
     {
-      name: "Coupon Manage",
-      path: "/admin/coupons",
+      name: "Coupon",
+      path: "/customer/coupon",
       icon: "svg",
       svg: (
         <path
@@ -56,8 +48,21 @@ const Sidebar = ({ sidebarOpen, toggleSidebar }) => {
       ),
     },
     {
-      name: "Service Manage",
-      path: "/admin/services",
+      name: "History",
+      path: "/customer/history",
+      icon: "svg",
+      svg: (
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+        ></path>
+      ),
+    },
+    {
+      name: "Settings",
+      path: "/customer/settings",
       icon: "svg",
       svg: (
         <>
@@ -74,19 +79,6 @@ const Sidebar = ({ sidebarOpen, toggleSidebar }) => {
             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
           ></path>
         </>
-      ),
-    },
-    {
-      name: "Transaction",
-      path: "/admin/transactions",
-      icon: "svg",
-      svg: (
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-        ></path>
       ),
     },
   ];
@@ -119,30 +111,18 @@ const Sidebar = ({ sidebarOpen, toggleSidebar }) => {
                     : "text-gray-700 hover:bg-red-50 hover:text-red-600"
                 }`}
               >
-                {item.icon === "image" ? (
-                  <img
-                    src={item.imageSrc}
-                    alt={`${item.name} Icon`}
-                    className={`mr-3 h-5 w-5 object-contain transition-opacity duration-200 ${
-                      isActive(item.path)
-                        ? "opacity-100"
-                        : "opacity-60 group-hover:opacity-100"
-                    }`}
-                  />
-                ) : (
-                  <svg
-                    className={`mr-3 h-5 w-5 transition-colors duration-200 ${
-                      isActive(item.path)
-                        ? "text-red-500"
-                        : "text-gray-400 group-hover:text-red-500"
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    {item.svg}
-                  </svg>
-                )}
+                <svg
+                  className={`mr-3 h-5 w-5 transition-colors duration-200 ${
+                    isActive(item.path)
+                      ? "text-red-500"
+                      : "text-gray-400 group-hover:text-red-500"
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  {item.svg}
+                </svg>
                 {item.name}
               </Link>
             </li>
@@ -176,4 +156,5 @@ const Sidebar = ({ sidebarOpen, toggleSidebar }) => {
   );
 };
 
-export default Sidebar;
+export default CustomerSidebar;
+    

@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import Model1 from '../../../assets/SharedAsset/Model1.jpg'
+import Model2 from '../../../assets/SharedAsset/Model2.jpg'
+import Model3 from '../../../assets/SharedAsset/Model3.jpg'
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -7,15 +10,15 @@ const Home = () => {
   const slides = [
     {
       id: 1,
-      image: '/SharedAsset/Model1.jpg'
+      image: Model1
     },
     {
       id: 2,
-      image: '/SharedAsset/Model2.jpg'
+      image: Model2
     },
     {
       id: 3,
-      image: '/SharedAsset/Model3.jpg'
+      image: Model3
     }
   ]
 
@@ -225,9 +228,9 @@ const Home = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Link to="/pricelist">
+            <Link to="/customer/book">
               <button className="bg-red-400 hover:bg-red-500 text-white font-semibold py-3 px-10 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                View Price List
+                View Services
               </button>
             </Link>
           </div>

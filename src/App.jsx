@@ -7,13 +7,16 @@ import ServiceManage from "./Components/FrontEnd/Admin/ServiceManage";
 import Transaction from "./Components/FrontEnd/Admin/Transaction";
 import GuestLayout from "./Components/FrontEnd/Layouts/GuestLayout";
 import CustomerLayout from "./Components/FrontEnd/Layouts/CustomerLayout";
-import Home from "./Components/FrontEnd/Shared/Home";
+import Home from "./Components/FrontEnd/User/Home";
 import Login from "./Components/FrontEnd/Shared/Login";
 import Register from "./Components/FrontEnd/Shared/Register";
-import Blog from "./Components/FrontEnd/Shared/Blog";
-import Gallery from "./Components/FrontEnd/Shared/Gallery";
-import PriceList from "./Components/FrontEnd/Shared/PriceList";
+import Blog from "./Components/FrontEnd/User/Blog";
 import Book from "./Components/FrontEnd/User/Book";
+import CustomerDashboard from "./Components/FrontEnd/User/CustomerDashboard";
+import CustomerProfile from "./Components/FrontEnd/User/CustomerProfile";
+import CustomerCoupon from "./Components/FrontEnd/User/CustomerCoupon";
+import CustomerHistory from "./Components/FrontEnd/User/CustomerHistory";
+import CustomerSettings from "./Components/FrontEnd/User/CustomerSettings";
 import ScrollToTop from "./Components/FrontEnd/Shared/ScrollToTop";
 import AuthProvider from "./context/AuthProvider";
 import ProtectedRoute from "./Components/FrontEnd/Shared/ProtectedRoute";
@@ -32,15 +35,50 @@ const App = () => (
         <Route path="/" element={withGuestLayout(<Home />)} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/pricelist" element={withGuestLayout(<PriceList />)} />
+        <Route path="/book" element={withGuestLayout(<Book />)} />
         <Route path="/blog" element={withGuestLayout(<Blog />)} />
-        <Route path="/gallery" element={withGuestLayout(<Gallery />)} />
 
         <Route
           path="/customer/dashboard"
           element={
             <ProtectedRoute allowedRoles={["customer"]}>
-              {withCustomerLayout(<Home />)}
+              <CustomerDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/customer/profile"
+          element={
+            <ProtectedRoute allowedRoles={["customer"]}>
+              <CustomerProfile />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/customer/coupon"
+          element={
+            <ProtectedRoute allowedRoles={["customer"]}>
+              <CustomerCoupon />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/customer/history"
+          element={
+            <ProtectedRoute allowedRoles={["customer"]}>
+              <CustomerHistory />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/customer/settings"
+          element={
+            <ProtectedRoute allowedRoles={["customer"]}>
+              <CustomerSettings />
             </ProtectedRoute>
           }
         />
@@ -50,24 +88,6 @@ const App = () => (
           element={
             <ProtectedRoute allowedRoles={["customer"]}>
               {withCustomerLayout(<Blog />)}
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/customer/gallery"
-          element={
-            <ProtectedRoute allowedRoles={["customer"]}>
-              {withCustomerLayout(<Gallery />)}
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/customer/pricelist"
-          element={
-            <ProtectedRoute allowedRoles={["customer"]}>
-              {withCustomerLayout(<PriceList />)}
             </ProtectedRoute>
           }
         />

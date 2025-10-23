@@ -1,4 +1,4 @@
-import CustomerNavbar from '../User/Navbar'
+import Navbar from '../Shared/Navbar'
 import Footer from '../Shared/Footer'
 import LoadingScreen from '../Shared/LoadingScreen'
 import useBackendHealth from '../../BackEnd/Utils/useBackendHealth'
@@ -12,7 +12,7 @@ const CustomerLayout = ({ children }) => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <CustomerNavbar />
+      <Navbar />
       <main className="flex-grow">
         {children}
       </main>

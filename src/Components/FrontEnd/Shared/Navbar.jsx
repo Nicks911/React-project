@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth, ROLE_REDIRECTS } from "../../../context/AuthContext";
+import logo from "../../../assets/SharedAsset/logo.png";
 
 const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
@@ -12,7 +13,7 @@ const Navbar = () => {
             {/* Logo/Brand */}
             <Link to="/" className="flex items-center space-x-3">
               <img
-                src="/SharedAsset/logo.png"
+                src={logo}
                 alt="Flower Beauty Salon Logo"
                 className="h-12 w-12 object-cover rounded-full"
               />
@@ -22,11 +23,7 @@ const Navbar = () => {
             </Link>
 
             {/* Navigation Menu */}
-            <ul
-              className={`flex ${
-                isAuthenticated ? "space-x-4" : "space-x-6"
-              } items-center`}
-            >
+            <ul className="flex space-x-6 items-center">
               <li className="relative group">
                 <Link
                   to="/"
@@ -47,36 +44,37 @@ const Navbar = () => {
               </li>
               <li className="relative group">
                 <Link
-                  to="/gallery"
+                  to={isAuthenticated ? "/customer/book" : "/book"}
                   className="text-gray-800 font-semibold text-lg transition-all duration-300 ease-in-out hover:text-red-400 relative"
                 >
-                  Gallery
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5  bg-red-300 transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-              </li>
-              <li className="relative group">
-                <Link
-                  to="/pricelist"
-                  className="text-gray-800 font-semibold text-lg transition-all duration-300 ease-in-out hover:text-red-400 relative"
-                >
-                  Price List
+                  Services
                   <span className="absolute bottom-0 left-0 w-0 h-0.5  bg-red-300 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </li>
               {isAuthenticated ? (
                 <>
-                  <li className="text-red-400 font-bold text-lg">
+                  <li className="relative group">
                     <Link
-                      to={
-                        ROLE_REDIRECTS[user?.role?.toLowerCase?.()] ||
-                        "/customer/dashboard"
-                      }
-                      className="hover:text-red-500 transition-colors"
+                      to="/customer/profile"
+                      className="text-gray-800 font-semibold text-lg flex items-center gap-2 transition-all duration-300 ease-in-out hover:text-red-400"
                     >
-                      Hi, {user?.fullName?.split(" ")[0] || "Guest"}
+                      <svg
+                        className="w-5 h-5 text-red-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                        />
+                      </svg>
+                      <span>Hi, {user?.fullName?.split(" ")[0] || "Guest"}</span>
                     </Link>
                   </li>
-                  <li>
+                  <li className="ml-4">
                     <button
                       onClick={logout}
                       className="relative overflow-hidden bg-red-400 hover:bg-red-500 text-white font-bold px-8 py-3 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/30 group cursor-pointer"
