@@ -6,7 +6,6 @@ export const buildUserPayload = (user) => ({
   role: user.role,
   status: user.status,
   avatarUrl: user.avatarUrl,
-  loyaltyPoints: user.loyaltyPoints,
   preferences: user.preferences,
   notificationPrefs: user.notificationPrefs,
   createdAt: user.createdAt,

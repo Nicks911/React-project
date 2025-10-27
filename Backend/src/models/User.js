@@ -37,7 +37,6 @@ const UserSchema = new mongoose.Schema(
     role: { type: String, enum: ["customer", "admin"], default: "customer" },
     status: { type: String, enum: ["active", "inactive"], default: "active" },
     avatarUrl: String,
-    loyaltyPoints: { type: Number, default: 0 },
     preferences: PreferencesSchema,
     notificationPrefs: NotificationPrefsSchema,
     emailVerifiedAt: Date,

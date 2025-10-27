@@ -286,12 +286,6 @@ const CustomerProfile = () => {
                   {user?.role || "Customer"}
                 </span>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                <span className="text-sm text-gray-600">Loyalty Points</span>
-                <span className="text-sm font-medium text-red-500">
-                  {user?.loyaltyPoints || 0} pts
-                </span>
-              </div>
               <div className="flex justify-between items-center py-2">
                 <span className="text-sm text-gray-600">Member Since</span>
                 <span className="text-sm font-medium text-gray-900">

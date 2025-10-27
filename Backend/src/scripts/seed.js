@@ -80,35 +80,30 @@ const run = async () => {
         email: "andi@example.com",
         phone: "081200000002",
         passwordHash: customerPassword,
-        loyaltyPoints: 120,
       },
       {
         fullName: "Bella Sari",
         email: "bella@example.com",
         phone: "081200000003",
         passwordHash: customerPassword,
-        loyaltyPoints: 80,
       },
       {
         fullName: "Carla Putri",
         email: "carla@example.com",
         phone: "081200000004",
         passwordHash: customerPassword,
-        loyaltyPoints: 95,
       },
       {
         fullName: "Dimas Rangga",
         email: "dimas@example.com",
         phone: "081200000005",
         passwordHash: customerPassword,
-        loyaltyPoints: 40,
       },
       {
         fullName: "Eka Lestari",
         email: "eka@example.com",
         phone: "081200000006",
         passwordHash: customerPassword,
-        loyaltyPoints: 65,
       },
     ],
     { ordered: true }
@@ -158,7 +153,11 @@ const run = async () => {
         priceMin: 75000,
         priceMax: 75000,
         durationMinutes: 60,
-        benefits: ["Rambut lebih lembut", "Mengatasi rambut kering", "Relaksasi kepala"],
+        benefits: [
+          "Rambut lebih lembut",
+          "Mengatasi rambut kering",
+          "Relaksasi kepala",
+        ],
         featured: false,
       },
       {
@@ -168,7 +167,11 @@ const run = async () => {
         priceMin: 85000,
         priceMax: 85000,
         durationMinutes: 75,
-        benefits: ["Nutrisi mendalam", "Rambut lebih sehat", "Mengurangi kerontokan"],
+        benefits: [
+          "Nutrisi mendalam",
+          "Rambut lebih sehat",
+          "Mengurangi kerontokan",
+        ],
         featured: true,
       },
       {
@@ -178,7 +181,11 @@ const run = async () => {
         priceMin: 80000,
         priceMax: 80000,
         durationMinutes: 50,
-        benefits: ["Rambut lebih halus", "Mengatasi rambut rusak", "Aroma menenangkan"],
+        benefits: [
+          "Rambut lebih halus",
+          "Mengatasi rambut rusak",
+          "Aroma menenangkan",
+        ],
         featured: false,
       },
       {
@@ -268,7 +275,11 @@ const run = async () => {
         priceMin: 85000,
         priceMax: 85000,
         durationMinutes: 50,
-        benefits: ["Mengurangi stress", "Tubuh lebih rileks", "Meningkatkan mood"],
+        benefits: [
+          "Mengurangi stress",
+          "Tubuh lebih rileks",
+          "Meningkatkan mood",
+        ],
         featured: false,
       },
       {
@@ -278,7 +289,11 @@ const run = async () => {
         priceMin: 125000,
         priceMax: 125000,
         durationMinutes: 90,
-        benefits: ["Perawatan menyeluruh", "Kulit lebih sehat", "Relaksasi maksimal"],
+        benefits: [
+          "Perawatan menyeluruh",
+          "Kulit lebih sehat",
+          "Relaksasi maksimal",
+        ],
         featured: true,
       },
       {
@@ -520,9 +535,7 @@ const run = async () => {
   const bookingSeeds = [
     buildBooking({
       customer: customerAndi,
-      servicesSelected: [
-        { service: serviceByName["Cutting"], price: 50000 },
-      ],
+      servicesSelected: [{ service: serviceByName["Cutting"], price: 50000 }],
       offsetDays: 1,
       hour: 10,
       status: "confirmed",
@@ -559,9 +572,7 @@ const run = async () => {
     }),
     buildBooking({
       customer: customerDimas,
-      servicesSelected: [
-        { service: serviceByName["Facial"], price: 125000 },
-      ],
+      servicesSelected: [{ service: serviceByName["Facial"], price: 125000 }],
       offsetDays: -1,
       hour: 11,
       status: "completed",
@@ -571,9 +582,7 @@ const run = async () => {
     }),
     buildBooking({
       customer: customerEka,
-      servicesSelected: [
-        { service: serviceByName["Cutting"], price: 50000 },
-      ],
+      servicesSelected: [{ service: serviceByName["Cutting"], price: 50000 }],
       offsetDays: -2,
       hour: 16,
       status: "cancelled",
