@@ -4,12 +4,12 @@ import cors from "cors";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
-import authRouter from "./routes/auth.js";
-import usersRouter from "./routes/users.js";
-import couponsRouter from "./routes/coupons.js";
-import bookingsRouter from "./routes/bookings.js";
-import transactionsRouter from "./routes/transactions.js";
-import servicesRouter from "./routes/services.js";
+import authRouter from "./controllers/auth.js";
+import usersRouter from "./controllers/users.js";
+import couponsRouter from "./controllers/coupons.js";
+import bookingsRouter from "./controllers/bookings.js";
+import transactionsRouter from "./controllers/transactions.js";
+import servicesRouter from "./controllers/services.js";
 import {
   runBookingReminderScan,
   startBookingReminderJob,
