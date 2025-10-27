@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently -n web,api -c blue,magenta \"vite\" \"npm run server:dev\"",
-    "server:dev": "npm --prefix server run dev",
-    "server:start": "npm --prefix server start",
-    "server:seed": "npm --prefix server run seed",
-    "install:server": "npm --prefix server install",
+    "dev": "concurrently -n web,api -c blue,magenta \"vite\" \"npm run backend:dev\"",
+    "backend:dev": "npm --prefix Backend run dev",
+    "backend:start": "npm --prefix Backend start",
+    "backend:seed": "npm --prefix Backend run seed",
+    "install:backend": "npm --prefix Backend install",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
