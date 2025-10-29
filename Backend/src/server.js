@@ -10,6 +10,7 @@ import couponsRouter from "./controllers/coupons.js";
 import bookingsRouter from "./controllers/bookings.js";
 import transactionsRouter from "./controllers/transactions.js";
 import servicesRouter from "./controllers/services.js";
+import customerRouter from "./controllers/customer.js";
 import {
   runBookingReminderScan,
   startBookingReminderJob,
@@ -34,6 +35,7 @@ app.use("/api/coupons", couponsRouter);
 app.use("/api/bookings", bookingsRouter);
 app.use("/api/transactions", transactionsRouter);
 app.use("/api/services", servicesRouter);
+app.use("/api/customer", customerRouter);
 
 // Health route
 app.get("/health", (req, res) => {
