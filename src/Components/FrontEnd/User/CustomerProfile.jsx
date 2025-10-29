@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import CustomerDashboardLayout from "./CustomerDashboardLayout";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+
 const CustomerProfile = () => {
-  const { user } = useAuth();
+  const { user, token, updateUser, initializing } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [isEditingPassword, setIsEditingPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -16,49 +18,230 @@ const CustomerProfile = () => {
     newPassword: "",
     confirmPassword: "",
   });
+  const [profileError, setProfileError] = useState("");
+  const [profileSuccess, setProfileSuccess] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordSuccess, setPasswordSuccess] = useState("");
+  const [isProfileLoading, setIsProfileLoading] = useState(false);
+  const [isProfileSaving, setIsProfileSaving] = useState(false);
+  const [isPasswordSaving, setIsPasswordSaving] = useState(false);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  useEffect(() => {
+    setFormData({
+      fullName: user?.fullName || "",
+      email: user?.email || "",
+      phone: user?.phone || "",
+    });
+  }, [user]);
+
+  useEffect(() => {
+    if (initializing || !token) {
+      return;
+    }
+
+    const controller = new AbortController();
+
+    const fetchProfile = async () => {
+      try {
+        setIsProfileLoading(true);
+        setProfileError("");
+
+        const response = await fetch(`${API_BASE_URL}/api/customer/profile`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          const payload = await response.json().catch(() => null);
+          throw new Error(payload?.message || "Failed to load profile");
+        }
+
+        const payload = await response.json();
+        if (payload?.user) {
+          updateUser(payload.user);
+          setFormData({
+            fullName: payload.user.fullName || "",
+            email: payload.user.email || "",
+            phone: payload.user.phone || "",
+          });
+        }
+      } catch (error) {
+        if (error.name === "AbortError") {
+          return;
+        }
+        console.error("Failed to load customer profile", error);
+        setProfileError(error.message || "Failed to load profile");
+      } finally {
+        setIsProfileLoading(false);
+      }
+    };
+
+    fetchProfile();
+
+    return () => controller.abort();
+  }, [initializing, token, updateUser]);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((previous) => ({ ...previous, [name]: value }));
   };
 
-  const handlePasswordChange = (e) => {
-    const { name, value } = e.target;
-    setPasswordData({ ...passwordData, [name]: value });
+  const handlePasswordChange = (event) => {
+    const { name, value } = event.target;
+    setPasswordData((previous) => ({ ...previous, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // TODO: Send update to backend
-    console.log("Updated Profile:", formData);
-    alert("Profile updated successfully!");
-    setIsEditing(false);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!token) {
+      setProfileError("You must be logged in to update your profile.");
+      setProfileSuccess("");
+      return;
+    }
+
+    const trimmedFullName = formData.fullName.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedPhone = formData.phone.trim();
+
+    if (!trimmedFullName) {
+      setProfileError("Full name is required.");
+      setProfileSuccess("");
+      return;
+    }
+
+    if (!trimmedEmail) {
+      setProfileError("Email is required.");
+      setProfileSuccess("");
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+      setProfileError("Please enter a valid email address.");
+      setProfileSuccess("");
+      return;
+    }
+
+    if (!trimmedPhone) {
+      setProfileError("Phone number is required.");
+      setProfileSuccess("");
+      return;
+    }
+
+    const updateProfile = async () => {
+      try {
+        setIsProfileSaving(true);
+        setProfileError("");
+        setProfileSuccess("");
+
+        const response = await fetch(`${API_BASE_URL}/api/customer/profile`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            fullName: trimmedFullName,
+            email: trimmedEmail,
+            phone: trimmedPhone,
+          }),
+        });
+
+        if (!response.ok) {
+          const payload = await response.json().catch(() => null);
+          throw new Error(payload?.message || "Failed to update profile");
+        }
+
+        const payload = await response.json();
+        if (payload?.user) {
+          updateUser(payload.user);
+          setFormData({
+            fullName: payload.user.fullName || "",
+            email: payload.user.email || "",
+            phone: payload.user.phone || "",
+          });
+        }
+
+        setProfileSuccess("Profile updated successfully!");
+        setIsEditing(false);
+      } catch (error) {
+        console.error("Failed to update profile", error);
+        setProfileError(error.message || "Failed to update profile");
+      } finally {
+        setIsProfileSaving(false);
+      }
+    };
+
+    updateProfile();
   };
 
-  const handlePasswordSubmit = (e) => {
-    e.preventDefault();
+  const handlePasswordSubmit = (event) => {
+    event.preventDefault();
 
     if (passwordData.newPassword !== passwordData.confirmPassword) {
-      alert("New password and confirm password do not match!");
+      setPasswordError("New password and confirm password do not match.");
+      setPasswordSuccess("");
       return;
     }
 
     if (passwordData.newPassword.length < 8) {
-      alert("Password must be at least 8 characters long!");
+      setPasswordError("Password must be at least 8 characters long.");
+      setPasswordSuccess("");
       return;
     }
 
-    // TODO: Add API call to update password
-    console.log("Password updated");
+    if (!token) {
+      setPasswordError("You must be logged in to update your password.");
+      setPasswordSuccess("");
+      return;
+    }
 
-    // Reset password fields
-    setPasswordData({
-      currentPassword: "",
-      newPassword: "",
-      confirmPassword: "",
-    });
-    setIsEditingPassword(false);
-    alert("Password updated successfully!");
+    const updatePassword = async () => {
+      try {
+        setIsPasswordSaving(true);
+        setPasswordError("");
+        setPasswordSuccess("");
+
+        const response = await fetch(
+          `${API_BASE_URL}/api/customer/profile/password`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              currentPassword: passwordData.currentPassword,
+              newPassword: passwordData.newPassword,
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          const payload = await response.json().catch(() => null);
+          throw new Error(payload?.message || "Failed to update password");
+        }
+
+        setPasswordSuccess("Password updated successfully!");
+        setPasswordData({
+          currentPassword: "",
+          newPassword: "",
+          confirmPassword: "",
+        });
+        setIsEditingPassword(false);
+      } catch (error) {
+        console.error("Failed to update password", error);
+        setPasswordError(error.message || "Failed to update password");
+      } finally {
+        setIsPasswordSaving(false);
+      }
+    };
+
+    updatePassword();
   };
 
   const handleCancel = () => {
@@ -68,12 +251,30 @@ const CustomerProfile = () => {
       phone: user?.phone || "",
     });
     setIsEditing(false);
+    setProfileError("");
+    setProfileSuccess("");
   };
 
   return (
     <CustomerDashboardLayout title="Profile">
       <div className="p-6">
         <div className="max-w-3xl mx-auto">
+          {profileSuccess && (
+            <div className="mb-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+              {profileSuccess}
+            </div>
+          )}
+          {profileError && (
+            <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+              {profileError}
+            </div>
+          )}
+          {isProfileLoading && !profileError && (
+            <div className="mb-4 rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-700">
+              Loading latest profile information...
+            </div>
+          )}
+
           {/* Profile Header */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
             <div className="flex items-center justify-between mb-6">
@@ -82,8 +283,13 @@ const CustomerProfile = () => {
               </h3>
               {!isEditing && (
                 <button
-                  onClick={() => setIsEditing(true)}
-                  className="px-4 py-2 bg-red-400 text-white text-sm font-medium rounded-lg hover:bg-red-500 transition-colors"
+                  onClick={() => {
+                    setIsEditing(true);
+                    setProfileSuccess("");
+                    setProfileError("");
+                  }}
+                  disabled={isProfileLoading}
+                  className="px-4 py-2 bg-red-400 text-white text-sm font-medium rounded-lg transition-colors hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   Edit Profile
                 </button>
@@ -103,6 +309,7 @@ const CustomerProfile = () => {
                       name="fullName"
                       value={formData.fullName}
                       onChange={handleInputChange}
+                      disabled={isProfileSaving}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:border-red-400 outline-none transition-all"
                       placeholder="Enter your full name"
                     />
@@ -124,6 +331,7 @@ const CustomerProfile = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
+                      disabled={isProfileSaving}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:border-red-400 outline-none transition-all"
                       placeholder="Enter your email"
                     />
@@ -145,6 +353,7 @@ const CustomerProfile = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
+                      disabled={isProfileSaving}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:border-red-400 outline-none transition-all"
                       placeholder="Enter your phone number"
                     />
@@ -167,9 +376,10 @@ const CustomerProfile = () => {
                     </button>
                     <button
                       type="submit"
-                      className="flex-1 py-3 bg-red-400 text-white font-medium rounded-lg hover:bg-red-500 transition-colors"
+                      disabled={isProfileSaving}
+                      className="flex-1 py-3 bg-red-400 text-white font-medium rounded-lg hover:bg-red-500 transition-colors disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      Save Changes
+                      {isProfileSaving ? "Saving..." : "Save Changes"}
                     </button>
                   </div>
                 )}
@@ -185,7 +395,11 @@ const CustomerProfile = () => {
               </h4>
               {!isEditingPassword && (
                 <button
-                  onClick={() => setIsEditingPassword(true)}
+                  onClick={() => {
+                    setIsEditingPassword(true);
+                    setPasswordError("");
+                    setPasswordSuccess("");
+                  }}
                   className="px-4 py-2 bg-red-400 text-white text-sm font-medium rounded-lg hover:bg-red-500 transition-colors"
                 >
                   Change Password
@@ -193,51 +407,77 @@ const CustomerProfile = () => {
               )}
             </div>
 
+            {passwordSuccess && (
+              <div className="mb-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+                {passwordSuccess}
+              </div>
+            )}
+            {passwordError && (
+              <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                {passwordError}
+              </div>
+            )}
+
             {isEditingPassword ? (
               <form onSubmit={handlePasswordSubmit}>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="currentPassword"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Current Password
                     </label>
                     <input
                       type="password"
+                      id="currentPassword"
                       name="currentPassword"
                       value={passwordData.currentPassword}
                       onChange={handlePasswordChange}
                       required
+                      disabled={isPasswordSaving}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:border-red-400 outline-none transition-all"
                       placeholder="Enter current password"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="newPassword"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       New Password
                     </label>
                     <input
                       type="password"
+                      id="newPassword"
                       name="newPassword"
                       value={passwordData.newPassword}
                       onChange={handlePasswordChange}
                       required
                       minLength="8"
+                      disabled={isPasswordSaving}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:border-red-400 outline-none transition-all"
                       placeholder="Enter new password (min. 8 characters)"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="confirmNewPassword"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Confirm New Password
                     </label>
                     <input
                       type="password"
+                      id="confirmNewPassword"
                       name="confirmPassword"
                       value={passwordData.confirmPassword}
                       onChange={handlePasswordChange}
                       required
                       minLength="8"
+                      disabled={isPasswordSaving}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:border-red-400 outline-none transition-all"
                       placeholder="Confirm new password"
                     />
@@ -254,6 +494,8 @@ const CustomerProfile = () => {
                         newPassword: "",
                         confirmPassword: "",
                       });
+                      setPasswordError("");
+                      setPasswordSuccess("");
                     }}
                     className="flex-1 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors"
                   >
@@ -261,9 +503,10 @@ const CustomerProfile = () => {
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 py-3 bg-red-400 text-white font-medium rounded-lg hover:bg-red-500 transition-colors"
+                    disabled={isPasswordSaving}
+                    className="flex-1 py-3 bg-red-400 text-white font-medium rounded-lg hover:bg-red-500 transition-colors disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    Update Password
+                    {isPasswordSaving ? "Updating..." : "Update Password"}
                   </button>
                 </div>
               </form>

@@ -3,20 +3,20 @@ import twilio from "twilio";
 const {
   TWILIO_ACCOUNT_SID,
   TWILIO_AUTH_TOKEN,
-  TWILIO_WHATSAPP_FROM,
+  TWILIO_PHONE_NUMBER,
   WHATSAPP_TEST_MODE,
 } = process.env;
 
 let twilioClient;
 
 const resolveFromNumber = () => {
-  if (!TWILIO_WHATSAPP_FROM) {
+  if (!TWILIO_PHONE_NUMBER) {
     return null;
   }
 
-  return TWILIO_WHATSAPP_FROM.startsWith("whatsapp:")
-    ? TWILIO_WHATSAPP_FROM
-    : `whatsapp:${TWILIO_WHATSAPP_FROM}`;
+  return TWILIO_PHONE_NUMBER.startsWith("whatsapp:")
+    ? TWILIO_PHONE_NUMBER
+    : `whatsapp:${TWILIO_PHONE_NUMBER}`;
 };
 
 const toE164 = (phone) => {

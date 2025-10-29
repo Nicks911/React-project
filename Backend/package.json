@@ -10,7 +10,8 @@
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "seed": "node src/scripts/seed.js",
-    "db:drop-staffs": "node src/scripts/dropStaffs.js"
+    "db:drop-staffs": "node src/scripts/dropStaffs.js",
+    "twilio:verify:create": "node src/scripts/createVerifyService.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

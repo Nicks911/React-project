@@ -37,6 +37,24 @@ Configure the following environment variables in your `.env` file to enable the 
 
 After the server boots and connects to MongoDB it schedules the reminder job and immediately scans for bookings occurring exactly three days ahead. Bookings without a WhatsApp-capable number are skipped and logged for follow-up.
 
+## SMS Verification (Twilio Verify)
+
+The API exposes endpoints for triggering and confirming SMS one-time passwords via Twilio Verify.
+
+1. Configure credentials in `.env`:
+   - `TWILIO_ACCOUNT_SID`
+   - `TWILIO_AUTH_TOKEN`
+   - Optional: `TWILIO_VERIFY_FRIENDLY_NAME` (defaults to `Flower Beauty Salon Authentication`).
+2. (Optional) Prime the Verify Service:
+   - `npm run twilio:verify:create`
+   - The script returns the Verify Service SID that will be reused automatically.
+3. Available routes:
+   - `POST /api/verify/service` (admin/setup use) – ensures the Verify service exists and returns its SID.
+   - `POST /api/verify/send` – body `{ phone, locale? }`; starts an SMS verification (returns the Verify Service SID used).
+   - `POST /api/verify/check` – body `{ phone, code }`; checks a verification attempt (returns the Verify Service SID used).
+
+All phone numbers are normalised to E.164 format before calling Twilio. The service automatically reuses (or creates) a Verify Service named `Flower Beauty Salon Authentication`, so you do not need to store the service SID manually.
+
 ## Models
 
 Implemented with Mongoose:

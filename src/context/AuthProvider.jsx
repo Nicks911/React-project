@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { AuthContext, STORAGE_KEYS } from "./AuthContext";
 
 export const AuthProvider = ({ children }) => {
@@ -83,6 +83,54 @@ export const AuthProvider = ({ children }) => {
     sessionStorage.removeItem(STORAGE_KEYS.user);
   };
 
+  const persistUserState = useCallback((nextUser) => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    try {
+      const serialized = nextUser ? JSON.stringify(nextUser) : null;
+      const hasLocalToken = Boolean(localStorage.getItem(STORAGE_KEYS.token));
+      const hasSessionToken = Boolean(
+        sessionStorage.getItem(STORAGE_KEYS.token)
+      );
+
+      if (hasLocalToken) {
+        if (serialized) {
+          localStorage.setItem(STORAGE_KEYS.user, serialized);
+        } else {
+          localStorage.removeItem(STORAGE_KEYS.user);
+        }
+      }
+
+      if (hasSessionToken) {
+        if (serialized) {
+          sessionStorage.setItem(STORAGE_KEYS.user, serialized);
+        } else {
+          sessionStorage.removeItem(STORAGE_KEYS.user);
+        }
+      }
+    } catch (error) {
+      console.warn("Failed to persist auth user", error);
+    }
+  }, []);
+
+  const updateUser = useCallback(
+    (nextUserOrUpdater) => {
+      setUser((previousUser) => {
+        const computedUser =
+          typeof nextUserOrUpdater === "function"
+            ? nextUserOrUpdater(previousUser)
+            : nextUserOrUpdater ?? null;
+
+        persistUserState(computedUser);
+
+        return computedUser;
+      });
+    },
+    [persistUserState]
+  );
+
   const value = useMemo(
     () => ({
       token,
@@ -92,8 +140,9 @@ export const AuthProvider = ({ children }) => {
       initializing,
       login,
       logout,
+      updateUser,
     }),
-    [token, user, initializing]
+    [token, user, initializing, updateUser]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

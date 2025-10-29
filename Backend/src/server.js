@@ -11,6 +11,7 @@ import bookingsRouter from "./controllers/bookings.js";
 import transactionsRouter from "./controllers/transactions.js";
 import servicesRouter from "./controllers/services.js";
 import customerRouter from "./controllers/customer.js";
+import verifyRouter from "./controllers/verify.js";
 import {
   runBookingReminderScan,
   startBookingReminderJob,
@@ -36,6 +37,7 @@ app.use("/api/bookings", bookingsRouter);
 app.use("/api/transactions", transactionsRouter);
 app.use("/api/services", servicesRouter);
 app.use("/api/customer", customerRouter);
+app.use("/api/verify", verifyRouter);
 
 // Health route
 app.get("/health", (req, res) => {
