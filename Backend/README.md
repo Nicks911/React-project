@@ -22,6 +22,21 @@ This backend provides MongoDB data models and a minimal Express server to suppor
 
 Server defaults to http://localhost:4000 and exposes `/health`.
 
+### Midtrans Snap Payments
+
+Configure the following variables in `.env` to enable Midtrans Snap token generation for customer checkout:
+
+- `MIDTRANS_SERVER_KEY` – required server key from the Midtrans dashboard.
+- `MIDTRANS_CLIENT_KEY` – client key used by the frontend Snap script.
+- `MIDTRANS_IS_PRODUCTION` – set to `true` in production to hit the live Snap endpoint (defaults to sandbox).
+
+New customer-facing routes:
+
+- `POST /api/customer/cart/redeem-coupon` – validate a coupon code against the current cart and return the discount.
+- `POST /api/customer/checkout/snap-token` – builds a Midtrans Snap transaction token for the current cart (after applying any coupon).
+
+The `/checkout/snap-token` route requires a populated cart and returns both the Snap token and `redirectUrl` so the frontend can either open `window.snap.pay` or fall back to the hosted payment page.
+
 ## WhatsApp Booking Reminders
 
 Automated WhatsApp reminders are sent 3 days before a confirmed booking.

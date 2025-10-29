@@ -10,6 +10,7 @@ Currently, two official plugins are available:
 ## Authentication & Route Guards
 
 - Set `VITE_API_URL` in your `.env` (e.g. `VITE_API_URL=http://localhost:4000`) so the frontend can reach the Express API.
+- Set `VITE_MIDTRANS_CLIENT_KEY` with the Midtrans client key so the cart can initialise the Snap payment modal (defaults to sandbox if not provided).
 - The app boots inside an `AuthProvider` (`src/context/AuthProvider.jsx`) which hydrates the logged-in user from `localStorage`, exposes `login`/`logout`, and normalises role-based redirects (shared constants live in `src/context/AuthContext.js`).
 - `ProtectedRoute` (`src/Components/FrontEnd/Shared/ProtectedRoute.jsx`) works like middleware for React Router:
   - Unauthenticated visitors are redirected to `/login` and their original target is stored in router state.

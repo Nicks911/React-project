@@ -61,6 +61,19 @@ const CustomerSidebar = ({ sidebarOpen, toggleSidebar }) => {
       ),
     },
     {
+      name: "Cart",
+      path: "/customer/cart",
+      icon: "svg",
+      svg: (
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M3 3h2l.4 2M7 13h10l3-8H5.4M7 13l-1.293 2.586A1 1 0 006.618 17H18m-9 4a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"
+        ></path>
+      ),
+    },
+    {
       name: "Settings",
       path: "/customer/settings",
       icon: "svg",
@@ -157,4 +170,3 @@ const CustomerSidebar = ({ sidebarOpen, toggleSidebar }) => {
 };
 
 export default CustomerSidebar;
-    

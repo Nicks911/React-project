@@ -17,6 +17,7 @@ import CustomerProfile from "./Components/FrontEnd/User/CustomerProfile";
 import CustomerCoupon from "./Components/FrontEnd/User/CustomerCoupon";
 import CustomerHistory from "./Components/FrontEnd/User/CustomerHistory";
 import CustomerSettings from "./Components/FrontEnd/User/CustomerSettings";
+import CustomerCart from "./Components/FrontEnd/User/CustomerCart";
 import ScrollToTop from "./Components/FrontEnd/Shared/ScrollToTop";
 import AuthProvider from "./context/AuthProvider";
 import ProtectedRoute from "./Components/FrontEnd/Shared/ProtectedRoute";
@@ -70,6 +71,15 @@ const App = () => (
           element={
             <ProtectedRoute allowedRoles={["customer"]}>
               <CustomerHistory />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/customer/cart"
+          element={
+            <ProtectedRoute allowedRoles={["customer"]}>
+              <CustomerCart />
             </ProtectedRoute>
           }
         />
