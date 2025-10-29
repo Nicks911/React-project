@@ -5,16 +5,35 @@ const NotificationPrefsSchema = new mongoose.Schema(
     email: { type: Boolean, default: true },
     whatsapp: { type: Boolean, default: true },
     inApp: { type: Boolean, default: true },
+    sms: { type: Boolean, default: false },
+    push: { type: Boolean, default: true },
+    bookingReminders: { type: Boolean, default: true },
+    promotions: { type: Boolean, default: false },
+    newsletter: { type: Boolean, default: true },
   },
   { _id: false }
 );
 
 const PreferencesSchema = new mongoose.Schema(
   {
+    theme: {
+      type: String,
+      enum: ["light", "dark"],
+      default: "light",
+    },
     favoriteServices: [
       { type: mongoose.Schema.Types.ObjectId, ref: "Service" },
     ],
     preferredStylist: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  },
+  { _id: false }
+);
+
+const DeactivationSchema = new mongoose.Schema(
+  {
+    reason: { type: String, trim: true },
+    requestedAt: { type: Date },
+    expiresAt: { type: Date },
   },
   { _id: false }
 );
@@ -39,6 +58,7 @@ const UserSchema = new mongoose.Schema(
     avatarUrl: String,
     preferences: PreferencesSchema,
     notificationPrefs: NotificationPrefsSchema,
+    deactivation: DeactivationSchema,
     emailVerifiedAt: Date,
     resetPasswordToken: String,
     resetPasswordExpires: Date,

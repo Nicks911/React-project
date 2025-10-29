@@ -8,6 +8,7 @@ export const buildUserPayload = (user) => ({
   avatarUrl: user.avatarUrl,
   preferences: user.preferences,
   notificationPrefs: user.notificationPrefs,
+  deactivation: user.deactivation,
   createdAt: user.createdAt,
   updatedAt: user.updatedAt,
 });
