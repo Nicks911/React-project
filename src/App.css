@@ -13,3 +13,9 @@
 .drop-slot .placeholder-text {
   pointer-events: none;
 }
+
+.sectionTitle{
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}

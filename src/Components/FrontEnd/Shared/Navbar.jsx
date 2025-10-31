@@ -51,6 +51,12 @@ const Navbar = () => {
                   <span className="absolute bottom-0 left-0 w-0 h-0.5  bg-red-300 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </li>
+              <li className="relative group">
+                <Link to={isAuthenticated ? "/customer/about" : "/about"} className="text-gray-800 font-semibold text-lg transition-all duration-300 ease-in-out hover:text-red-400 relative">
+                  About Us
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5  bg-red-300 transition-all duration-300 group-hover:w-full"></span>
+                </Link>
+              </li>
               {isAuthenticated ? (
                 <>
                   <li className="relative group">
