@@ -102,4 +102,10 @@ img, video, svg, .responsive-img{
   .info-card{ padding: 12px; }
 }
 
+/* Footer utilities to prevent overflow of copyright/info text */
+.footer-info{
+  min-width: 0; /* allow flex children to shrink */
+  overflow-wrap: anywhere; /* allow long words/URLs to break */
+}
+
 
