@@ -15,8 +15,9 @@ const AboutUs = () => {
         src="/src/assets/SharedAsset/logo.png"
         alt="Foto Salon"
         style={{
-        width: 400,
-        height: 600,
+        maxWidth: 400,
+        width: "100%",
+        height: "auto",
         objectFit: "cover",
         borderRadius: 8,
         flex: "0 0 auto",}}
@@ -33,27 +34,27 @@ const AboutUs = () => {
           tenaga ahli berpengalaman.
         </p>
 
-        <div style={{ marginTop: 16 }}>
+        <div style={{ marginTop: 16 }} className="info-card">
           <h3 className="sectionTitle">Kontak</h3>
           <p>
-            Telepon: <a href="tel:+628123456789">+62 898-5452-5596</a>
+            Telepon: <span>+62 898-5452-5596</span>
           </p>
           <p>
-            Email: <a href="mailto:info@saloncantikindah.com">info@saloncantikindah.com</a>
+            Email: <span>info@saloncantikindah.com</span>
           </p>
           <p>
-            WhatsApp: <a href="https://wa.me/628123456789" target="_blank" rel="noreferrer">Chat via WhatsApp</a>
+            WhatsApp: <a href="https://wa.me/628123456789" target="_blank" rel="noreferrer">+62 898-5452-5596</a>
           </p>
         </div>
 
-        <div style={{ marginTop: 16 }}>
+        <div style={{ marginTop: 16 }} className="info-card">
           <h3 className="sectionTitle">Lokasi</h3>
-          <p>Jl. Gubeng Kertajaya V F Blok F No.32, Airlangga, Kec. Gubeng, Surabaya
-RT.007/RW.03</p>
+          <p>Jl. Gubeng Kertajaya V F Blok F No.32 </p>
+          <p>RT.007/RW.03, Airlangga, Kec. Gubeng, Surabaya, Jawa Timur 60286</p>
           <p>Jam buka: Senin - Sabtu, 09:00 - 20:00</p>
         </div>
 
-        <div style={{ marginTop: 16 }}>
+        <div style={{ marginTop: 16 }} className="info-card">
           <h3 className="sectionTitle">Sosial Media</h3>
           <ul style={{ listStyle: "none", paddingLeft: 0, marginTop: 8 }}>
             <li>

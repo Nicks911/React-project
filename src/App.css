@@ -19,3 +19,87 @@
     font-weight: 700;
     margin-bottom: 8px;
 }
+
+:root{
+  --container-max-width: 1200px;
+  --gutter: 16px;
+}
+.container{
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: calc(var(--gutter));
+  padding-right: calc(var(--gutter));
+}
+
+img, video, svg, .responsive-img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.row{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.col{
+  flex: 1 1 0;
+  min-width: 0;
+}
+.col-auto{
+  flex: 0 0 auto;
+}
+
+.service-item{
+  max-width: 100%;
+  word-break: break-word;
+}
+
+@media (max-width: 1024px){
+  .sectionTitle{ font-size: 1rem; }
+  .service-item.sortable-chosen{ transform: scale(1.03); }
+}
+
+@media (max-width: 768px){
+  :root{ --gutter: 12px; }
+  .sectionTitle{ font-size: 0.98rem; }
+  /* ensure any sidebars or fixed-width panels collapse to full width */
+  .sidebar, .AdminLayout, .CustomerLayout, .CustomerSidebar{
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+  .service-item.sortable-chosen{ transform: scale(1.02); }
+}
+
+@media (max-width: 480px){
+  :root{ --gutter: 10px; }
+  html, body{ -webkit-text-size-adjust: 100%; }
+  .sectionTitle{ font-size: 0.95rem; }
+  /* make form elements and buttons easier to tap */
+  button, .btn{
+    min-height: 40px;
+    padding: 10px 12px;
+  }
+  /* reduce scale of shadows/hover effects on very small screens */
+  .service-item.sortable-chosen{ box-shadow: none; transform: none; }
+}
+
+/* If you still see layout issues: make sure index.html contains
+   <meta name="viewport" content="width=device-width, initial-scale=1"> */
+
+/* Info card used in AboutUs and similar sections */
+.info-card{
+  background-color: rgba(255,255,255,0.03); /* subtle contrast on dark bg */
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+@media (max-width: 480px){
+  .info-card{ padding: 12px; }
+}
+
+
